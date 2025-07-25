@@ -1,0 +1,1702 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Corehlance | Salud Ocupacional Integral</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    :root {
+      --primary-blue: #0568B6;
+      --secondary-blue: #0AB0E1;
+      --light-blue: #82E6F3;
+      --accent-green: #21DC99;
+      --white: #FFFFFF;
+      --dark-text: #1a1a1a;
+      --light-gray: #f8f9fa;
+    }
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--dark-text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    
+    /* Modal Overlay */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      z-index: 9999;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    
+    .modal-overlay.active {
+      display: block;
+      opacity: 1;
+    }
+    
+    /* Modal Content */
+    .modal {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0.9);
+      background: white;
+      padding: 2.5rem;
+      border-radius: 20px;
+      max-width: 600px;
+      width: 90%;
+      max-height: 80vh;
+      overflow-y: auto;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      opacity: 0;
+      transition: all 0.3s ease;
+      z-index: 10000;
+      display: none;
+    }
+    
+    .modal.active {
+      display: block;
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
+    
+    .modal-close {
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+      background: var(--light-gray);
+      border: none;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      transition: all 0.3s;
+      color: var(--dark-text);
+    }
+    
+    .modal-close:hover {
+      background: var(--primary-blue);
+      color: white;
+    }
+    
+    .modal h3 {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+      color: var(--primary-blue);
+    }
+    
+    .modal h4 {
+      font-size: 1.2rem;
+      margin-top: 1.5rem;
+      margin-bottom: 0.5rem;
+      color: var(--dark-text);
+    }
+    
+    .modal p {
+      margin-bottom: 1rem;
+      color: #666;
+    }
+    
+    .modal ul {
+      margin: 1rem 0;
+      padding-left: 1.5rem;
+    }
+    
+    .modal ul li {
+      margin-bottom: 0.5rem;
+      color: #666;
+    }
+    
+    .modal .primary-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(5, 104, 182, 0.4) !important;
+    }
+    
+    /* Modal de privacidad - asegurar que sea scrolleable */
+    #modal-privacidad {
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+    
+    /* Header */
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+      transition: all 0.3s ease;
+    }
+    
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 5%;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    
+    .logo {
+      height: 50px;
+      animation: logoFloat 3s ease-in-out infinite;
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      transition: transform 0.3s;
+      cursor: pointer;
+    }
+    
+    .logo:hover {
+      transform: scale(1.05);
+      animation-play-state: paused;
+    }
+    
+    @keyframes logoFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-5px); }
+    }
+    
+    .logo img {
+      height: 100%;
+      width: auto;
+      object-fit: contain;
+    }
+    
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+    }
+    
+    .nav-links a {
+      text-decoration: none;
+      color: var(--dark-text);
+      font-weight: 500;
+      transition: color 0.3s;
+      position: relative;
+    }
+    
+    .nav-links a:hover {
+      color: var(--primary-blue);
+    }
+    
+    .cta-button {
+      background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+      color: white !important;
+      padding: 0.8rem 1.5rem;
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s;
+      box-shadow: 0 4px 15px rgba(5, 104, 182, 0.3);
+    }
+    
+    .cta-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(5, 104, 182, 0.4);
+    }
+    
+    /* Hero Section */
+    .hero {
+      padding: 120px 5% 80px;
+      background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .hero::before {
+      content: '';
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, var(--light-blue) 0%, transparent 70%);
+      opacity: 0.3;
+      border-radius: 50%;
+      top: -200px;
+      right: -200px;
+      animation: float 20s infinite ease-in-out;
+    }
+    
+    .hero::after {
+      content: '';
+      position: absolute;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, var(--accent-green) 0%, transparent 70%);
+      opacity: 0.3;
+      border-radius: 50%;
+      bottom: -150px;
+      left: -150px;
+      animation: float 25s infinite ease-in-out reverse;
+    }
+    
+    @keyframes float {
+      0%, 100% { transform: translateY(0) translateX(0); }
+      25% { transform: translateY(-30px) translateX(20px); }
+      50% { transform: translateY(20px) translateX(-20px); }
+      75% { transform: translateY(-20px) translateX(30px); }
+    }
+    
+    .hero-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .hero-text h1 {
+      font-size: clamp(2.5rem, 5vw, 3.5rem);
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 1.5rem;
+      color: var(--dark-text);
+    }
+    
+    .hero-text h1 span {
+      background: linear-gradient(135deg, var(--primary-blue), var(--accent-green));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      display: inline;
+      white-space: nowrap;
+    }
+    
+    .hero-text p {
+      font-size: 1.2rem;
+      color: #666;
+      margin-bottom: 2rem;
+    }
+    
+    .hero-buttons {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    
+    .primary-button {
+      background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+      color: white;
+      padding: 1rem 2rem;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.3s;
+      box-shadow: 0 5px 20px rgba(5, 104, 182, 0.3);
+    }
+    
+    .primary-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(5, 104, 182, 0.4);
+    }
+    
+    .secondary-button {
+      border: 2px solid var(--primary-blue);
+      color: var(--primary-blue);
+      padding: 1rem 2rem;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s;
+    }
+    
+    .secondary-button:hover {
+      background: var(--primary-blue);
+      color: white;
+    }
+    
+    .hero-image {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    .hero-image img {
+      animation: pulse 4s infinite ease-in-out;
+    }
+    
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+    
+    /* About Section */
+    .about {
+      padding: 80px 5%;
+      background: white;
+    }
+    
+    .about-container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .about-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+    
+    .about-header h2 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: var(--dark-text);
+    }
+    
+    .about-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+    
+    .about-text h3 {
+      font-size: 1.5rem;
+      color: var(--primary-blue);
+      margin-bottom: 1rem;
+    }
+    
+    .about-text p {
+      color: #666;
+      margin-bottom: 2rem;
+      line-height: 1.8;
+    }
+    
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+    
+    .value-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1.5rem;
+      background: var(--light-gray);
+      border-radius: 15px;
+      transition: all 0.3s;
+    }
+    
+    .value-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    }
+    
+    .value-icon {
+      width: 50px;
+      height: 50px;
+      background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.5rem;
+      flex-shrink: 0;
+    }
+    
+    /* Services Section */
+    .services {
+      padding: 80px 5%;
+      background: var(--light-gray);
+    }
+    
+    .section-header {
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto 3rem;
+    }
+    
+    .section-header h2 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: var(--dark-text);
+    }
+    
+    .section-header p {
+      font-size: 1.1rem;
+      color: #666;
+    }
+    
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .service-card {
+      background: white;
+      border-radius: 20px;
+      padding: 2rem;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+    }
+    
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      background: linear-gradient(90deg, var(--primary-blue), var(--accent-green));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s;
+    }
+    
+    .service-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    }
+    
+    .service-card:hover::before {
+      transform: scaleX(1);
+    }
+    
+    .service-icon {
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+      border-radius: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      color: white;
+      margin-bottom: 1.5rem;
+    }
+    
+    .service-card h3 {
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+      color: var(--dark-text);
+    }
+    
+    .service-card p {
+      color: #666;
+      line-height: 1.6;
+    }
+    
+    .service-card span {
+      transition: all 0.3s;
+      cursor: pointer;
+    }
+    
+    .service-card:hover span {
+      color: var(--secondary-blue);
+      padding-left: 10px;
+    }
+    
+    /* Features Section */
+    .features {
+      padding: 80px 5%;
+      background: white;
+    }
+    
+    .features-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 3rem;
+    }
+    
+    .feature {
+      text-align: center;
+    }
+    
+    .feature-icon {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 1.5rem;
+      background: linear-gradient(135deg, var(--light-blue), var(--accent-green));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      color: white;
+      box-shadow: 0 5px 20px rgba(33, 220, 153, 0.3);
+    }
+    
+    .feature h3 {
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+      color: var(--dark-text);
+    }
+    
+    .feature p {
+      color: #666;
+    }
+    
+    /* CTA Section */
+    .cta-section {
+      padding: 80px 5%;
+      background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+      color: white;
+      text-align: center;
+    }
+    
+    .cta-content h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+    
+    .cta-content p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+      opacity: 0.9;
+    }
+    
+    .cta-white-button {
+      background: white;
+      color: var(--primary-blue);
+      padding: 1rem 2.5rem;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.3s;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+    }
+    
+    .cta-white-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    }
+    
+    /* Contact Form Section */
+    .contact-form-section {
+      padding: 80px 5%;
+      background: var(--light-gray);
+    }
+    
+    .contact-container {
+      max-width: 600px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    
+    .contact-container h2 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: var(--dark-text);
+    }
+    
+    .contact-container p {
+      font-size: 1.1rem;
+      color: #666;
+      margin-bottom: 2rem;
+    }
+    
+    .contact-form {
+      margin-top: 2rem;
+    }
+    
+    .contact-form input,
+    .contact-form textarea,
+    .contact-form select {
+      width: 100%;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+      transition: all 0.3s;
+      background: white;
+    }
+    
+    .contact-form input:focus,
+    .contact-form textarea:focus,
+    .contact-form select:focus {
+      outline: none;
+      border-color: var(--primary-blue);
+      box-shadow: 0 0 0 3px rgba(5, 104, 182, 0.1);
+    }
+    
+    .contact-form textarea {
+      resize: vertical;
+      min-height: 150px;
+    }
+    
+    /* Honeypot field - anti-spam */
+    input[name="_gotcha"] {
+      display: none !important;
+    }
+    
+    /* Success message styling */
+    .form-message {
+      margin-top: 2rem;
+      padding: 1.5rem;
+      border-radius: 15px;
+      text-align: center;
+      font-size: 1.1rem;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      animation: fadeIn 0.5s ease-in;
+    }
+    
+    .form-message strong {
+      font-size: 1.3rem;
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+    
+    .form-message.success {
+      background: linear-gradient(135deg, #d4f5d4, #e8f8e8);
+      color: #2d7a2d;
+      border: 1px solid #b8e7b8;
+    }
+    
+    .form-message.error {
+      background: linear-gradient(135deg, #ffd4d4, #ffe8e8);
+      color: #a02d2d;
+      border: 1px solid #e7b8b8;
+    }
+    
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    
+    .submit-button {
+      margin-top: 1rem;
+      padding: 1rem 3rem;
+      background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+      color: white;
+      border: none;
+      border-radius: 30px;
+      font-weight: 600;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: all 0.3s;
+      box-shadow: 0 5px 20px rgba(5, 104, 182, 0.3);
+    }
+    
+    .submit-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(5, 104, 182, 0.4);
+    }
+    
+    /* Map Section */
+    .map-section {
+      padding: 80px 5%;
+      background: white;
+    }
+    
+    .map-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    
+    .map-container h2 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: var(--dark-text);
+    }
+    
+    .map-container p {
+      font-size: 1.1rem;
+      color: #666;
+      margin-bottom: 2rem;
+    }
+    
+    .map-wrapper {
+      margin-top: 2rem;
+    }
+    
+    /* WhatsApp Float Button */
+    .whatsapp-float {
+      position: fixed;
+      width: 60px;
+      height: 60px;
+      bottom: 30px;
+      right: 30px;
+      background: #25d366;
+      color: white;
+      border-radius: 50%;
+      text-align: center;
+      font-size: 30px;
+      box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+      z-index: 999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s;
+      text-decoration: none;
+    }
+    
+    .whatsapp-float:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5);
+      color: white;
+    }
+    
+    /* Footer */
+    footer {
+      background: #1a1a1a;
+      color: white;
+      padding: 60px 5% 30px;
+    }
+    
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 3rem;
+      margin-bottom: 3rem;
+    }
+    
+    .footer-section h3 {
+      margin-bottom: 1rem;
+      color: var(--light-blue);
+    }
+    
+    .footer-section p, .footer-section a {
+      color: #aaa;
+      text-decoration: none;
+      line-height: 1.8;
+      transition: color 0.3s;
+    }
+    
+    .footer-section a:hover {
+      color: var(--light-blue);
+    }
+    
+    .footer-bottom {
+      text-align: center;
+      padding-top: 2rem;
+      border-top: 1px solid #333;
+      color: #666;
+    }
+    
+    .footer-bottom a {
+      color: var(--light-blue);
+      text-decoration: none;
+      transition: all 0.3s;
+    }
+    
+    .footer-bottom a:hover {
+      text-decoration: underline;
+    }
+    
+    /* Mobile Menu */
+    .mobile-menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0.5rem;
+    }
+    
+    .mobile-menu-toggle span {
+      display: block;
+      width: 25px;
+      height: 3px;
+      background: var(--dark-text);
+      margin: 5px 0;
+      transition: 0.3s;
+    }
+    
+    /* Responsive */
+    @media (max-width: 968px) {
+      .hero-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+      
+      .hero-image {
+        order: -1;
+      }
+      
+      .hero-image img {
+        max-width: 250px;
+      }
+      
+      .about-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+      
+      .values-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: white;
+        flex-direction: column;
+        padding: 2rem;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+      }
+      
+      .nav-links.active {
+        display: flex;
+      }
+      
+      .mobile-menu-toggle {
+        display: block;
+      }
+      
+      .hero {
+        padding: 100px 5% 60px;
+      }
+      
+      .hero-text h1 {
+        font-size: 2rem;
+      }
+      
+      .hero-text h1 span {
+        white-space: normal; /* Permitir salto de línea en móviles si es necesario */
+      }
+      
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .modal {
+        padding: 2rem;
+      }
+      
+      .contact-form input,
+      .contact-form textarea,
+      .contact-form select {
+        font-size: 16px; /* Previene zoom en iOS */
+      }
+      
+      .whatsapp-float {
+        width: 55px;
+        height: 55px;
+        bottom: 20px;
+        right: 20px;
+      }
+      
+      .form-message {
+        font-size: 1rem;
+        padding: 1.2rem;
+      }
+      
+      .form-message strong {
+        font-size: 1.1rem;
+      }
+    }
+  </style>
+</head>
+<body id="top">
+  <!-- Modals for Services -->
+  <div class="modal-overlay" id="modalOverlay" onclick="closeModalOverlay()"></div>
+  
+  <!-- Modal 1: Estudios Clínicos -->
+  <div class="modal" id="modal1">
+    <button class="modal-close" onclick="closeModal(1)">&times;</button>
+    <h3>Estudios Clínicos Laborales</h3>
+    <p>Realizamos exámenes médicos completos adaptados a las necesidades de tu empresa.</p>
+    
+    <h4>Laboratorio Clínico:</h4>
+    <ul>
+      <li>Antidoping</li>
+      <li>Biometría hemática</li>
+      <li>Química sanguínea</li>
+      <li>Hemoglobina glicosilada</li>
+      <li>Coproparasitoscópico</li>
+      <li>Examen general de orina</li>
+      <li>Perfil bioquímico</li>
+      <li>KOH</li>
+      <li>Otros análisis especializados</li>
+    </ul>
+    
+    <h4>Estudios de gabinete:</h4>
+    <ul>
+      <li>Audiometrías</li>
+      <li>Espirometrías</li>
+      <li>Electrocardiogramas</li>
+      <li>Rayos X</li>
+    </ul>
+    
+    <h4>Ventajas Clave:</h4>
+    <ul>
+      <li>Servicio en sitio (sin traslado)</li>
+      <li>Resultados el mismo día</li>
+      <li>Expediente clínico electrónico</li>
+      <li>Estadísticas grupales mensuales</li>
+      <li>Personal flebotomista capacitado</li>
+      <li>Personal de custodia en pruebas antidoping</li>
+    </ul>
+    
+    <div style="margin-top: 2rem; text-align: center;">
+      <a href="https://wa.me/528123217906?text=Hola%2C%20me%20interesa%20cotizar%20Estudios%20Cl%C3%ADnicos%20Laborales" 
+         target="_blank"
+         class="primary-button" 
+         style="display: inline-block; padding: 1rem 2rem; background: linear-gradient(135deg, #0568B6, #0AB0E1); color: white; border-radius: 30px; text-decoration: none; font-weight: 600; box-shadow: 0 5px 20px rgba(5, 104, 182, 0.3); transition: all 0.3s;">
+        💬 Solicitar Cotización
+      </a>
+    </div>
+  </div>
+  
+  <!-- Modal 2: Unidad Móvil -->
+  <div class="modal" id="modal2">
+    <button class="modal-close" onclick="closeModal(2)">&times;</button>
+    <h3>Unidad Móvil Médica</h3>
+    <p>Nuestro consultorio móvil permite realizar estudios directamente en tu empresa, ideal para grupos grandes (+50 personas).</p>
+    
+    <h4>Nuestra unidad móvil incluye:</h4>
+    <ul>
+      <li>Consultorio general climatizado</li>
+      <li>Equipo de Rayos X portátil</li>
+      <li>Cabina de audiometría certificada con aislamiento acústico</li>
+      <li>Espirómetro y audiómetro calibrados</li>
+      <li>Cama de exploración</li>
+      <li>Tecnología LED y conexión de 40 m de alcance</li>
+    </ul>
+    
+    <h4>Servicios disponibles en la unidad:</h4>
+    <ul>
+      <li>Exámenes médicos completos</li>
+      <li>Toma de muestras de laboratorio</li>
+      <li>Audiometrías con cabina insonorizada</li>
+      <li>Espirometrías</li>
+      <li>Electrocardiogramas</li>
+      <li>Rayos X de tórax</li>
+    </ul>
+    
+    <p>La unidad móvil está equipada con la más alta tecnología para brindar servicios médicos de calidad sin necesidad de que tus colaboradores se trasladen.</p>
+    
+    <div style="margin-top: 2rem; text-align: center;">
+      <a href="https://wa.me/528123217906?text=Hola%2C%20me%20interesa%20cotizar%20Unidad%20M%C3%B3vil%20M%C3%A9dica" 
+         target="_blank"
+         class="primary-button" 
+         style="display: inline-block; padding: 1rem 2rem; background: linear-gradient(135deg, #0568B6, #0AB0E1); color: white; border-radius: 30px; text-decoration: none; font-weight: 600; box-shadow: 0 5px 20px rgba(5, 104, 182, 0.3); transition: all 0.3s;">
+        💬 Solicitar Cotización
+      </a>
+    </div>
+  </div>
+  
+  <!-- Modal 3: Médico In House -->
+  <div class="modal" id="modal3">
+    <button class="modal-close" onclick="closeModal(3)">&times;</button>
+    <h3>Atención Médica en Sitio (In House)</h3>
+    <p>Asignamos médicos y enfermeros capacitados a tus instalaciones, con experiencia en salud ocupacional y manejo de riesgos laborales.</p>
+    
+    <h4>Profesionales:</h4>
+    <ul>
+      <li>Con título, cédula y experiencia en entornos industriales</li>
+      <li>Capacitados en primeros auxilios y gestión médica</li>
+      <li>Coordinadores médicos y de enfermería supervisan el servicio</li>
+    </ul>
+    
+    <h4>Actividades del personal médico:</h4>
+    <ul>
+      <li>Atención y registro de accidentes laborales (incluye llenado de ST-7, ST-9)</li>
+      <li>Auditorías a áreas operativas</li>
+      <li>Recorridos en planta y seguimiento de incapacidades</li>
+      <li>Elaboración de campañas básicas de salud</li>
+      <li>Indicadores e investigación de accidentes</li>
+    </ul>
+    
+    <div style="margin-top: 2rem; text-align: center;">
+      <a href="https://wa.me/528123217906?text=Hola%2C%20me%20interesa%20cotizar%20servicio%20de%20M%C3%A9dico%20In%20House" 
+         target="_blank"
+         class="primary-button" 
+         style="display: inline-block; padding: 1rem 2rem; background: linear-gradient(135deg, #0568B6, #0AB0E1); color: white; border-radius: 30px; text-decoration: none; font-weight: 600; box-shadow: 0 5px 20px rgba(5, 104, 182, 0.3); transition: all 0.3s;">
+        💬 Solicitar Cotización
+      </a>
+    </div>
+  </div>
+  
+  <!-- Modal 4: Programa Wellness -->
+  <div class="modal" id="modal4">
+    <button class="modal-close" onclick="closeModal(4)">&times;</button>
+    <h3>Bienestar Integral (Programa Wellness)</h3>
+    <p>Contamos con planes de salud física y emocional para tus colaboradores.</p>
+    
+    <h4>Especialistas disponibles:</h4>
+    <ul>
+      <li>Nutriólogo</li>
+      <li>Psicólogo</li>
+      <li>Coach deportivo</li>
+      <li>Fisioterapia</li>
+      <li>Tanatología</li>
+      <li>Médico general</li>
+    </ul>
+    
+    <h4>Áreas cubiertas en fisioterapia:</h4>
+    <ul>
+      <li>Traumatológica</li>
+      <li>Respiratoria</li>
+      <li>Oncológica</li>
+      <li>Salud mental</li>
+    </ul>
+    
+    <h4>Terapias Complementarias:</h4>
+    <ul>
+      <li>Electroestimulación</li>
+      <li>Ultrasonido terapéutico</li>
+      <li>Kinesiotape</li>
+      <li>Masajes (relajantes, descontracturantes, descarga muscular)</li>
+    </ul>
+    
+    <h4>Programas Especiales:</h4>
+    <ul>
+      <li>Ferias de Salud (glucosa, signos vitales, juegos didácticos)</li>
+      <li>Evaluaciones ergonómicas por puesto (certificadas por la Univ. Politécnica de Valencia)</li>
+      <li>Pláticas y talleres: manejo de estrés, ergonomía, prevención auditiva, salud emocional</li>
+    </ul>
+    
+    <p><strong>Modalidad flexible:</strong> atención en empresa, domicilio o en nuestras instalaciones.</p>
+    
+    <div style="margin-top: 2rem; text-align: center;">
+      <a href="https://wa.me/528123217906?text=Hola%2C%20me%20interesa%20cotizar%20Programa%20Wellness" 
+         target="_blank"
+         class="primary-button" 
+         style="display: inline-block; padding: 1rem 2rem; background: linear-gradient(135deg, #0568B6, #0AB0E1); color: white; border-radius: 30px; text-decoration: none; font-weight: 600; box-shadow: 0 5px 20px rgba(5, 104, 182, 0.3); transition: all 0.3s;">
+        💬 Solicitar Cotización
+      </a>
+    </div>
+  </div>
+  
+  <!-- Modal 5: Cumplimiento Normativo -->
+  <div class="modal" id="modal5">
+    <button class="modal-close" onclick="closeModal(5)">&times;</button>
+    <h3>Cumplimiento Normativo y Prevención</h3>
+    <p>Te ayudamos a cumplir con todas las Normas Oficiales Mexicanas en materia de salud ocupacional y AHS.</p>
+    
+    <h4>Normas de Salud Ocupacional:</h4>
+    
+    <h4>NOM-030-STPS - Servicios Preventivos de Seguridad y Salud</h4>
+    <ul>
+      <li>Implementación de programas de seguridad y salud</li>
+      <li>Diagnóstico de seguridad y salud en el trabajo</li>
+      <li>Programas preventivos y correctivos</li>
+    </ul>
+    
+    <h4>NOM-035-STPS - Factores de Riesgo Psicosocial</h4>
+    <ul>
+      <li>Aplicación de cuestionarios</li>
+      <li>Reporte ejecutivo</li>
+      <li>Pláticas y recomendaciones</li>
+      <li>Consultas psicológicas y tanatológicas</li>
+      <li>Plan de acción personalizado</li>
+    </ul>
+    
+    <h4>NOM-036-1-STPS - Ergonomía</h4>
+    <ul>
+      <li>Evaluaciones por puesto de trabajo</li>
+      <li>Métodos: MAC TOOL, RULA, NIOSH, OWAS, SNOOK & CIRELLO, ROSA JSI</li>
+      <li>Análisis de cargas y posturas</li>
+      <li>Recomendaciones ergonómicas</li>
+    </ul>
+    
+    <h4>NOM-037-STPS - Teletrabajo</h4>
+    <ul>
+      <li>Evaluación y recomendaciones para entornos remotos</li>
+      <li>Condiciones de seguridad y salud en home office</li>
+      <li>Capacitación en ergonomía para teletrabajo</li>
+    </ul>
+    
+    <h4>Normas de Ambiente, Higiene y Seguridad (AHS):</h4>
+    
+    <h4>NOM-011-STPS - Ruido</h4>
+    <ul>
+      <li>Evaluación de niveles de ruido</li>
+      <li>Programas de conservación auditiva</li>
+      <li>Audiometrías ocupacionales</li>
+    </ul>
+    
+    <h4>NOM-024-STPS - Vibraciones</h4>
+    <ul>
+      <li>Evaluación de exposición a vibraciones</li>
+      <li>Programas preventivos</li>
+    </ul>
+    
+    <h4>NOM-025-STPS - Iluminación</h4>
+    <ul>
+      <li>Estudios de niveles de iluminación</li>
+      <li>Recomendaciones de mejora</li>
+    </ul>
+    
+    <h4>NOM-018-STPS - Sustancias Químicas</h4>
+    <ul>
+      <li>Identificación y comunicación de peligros</li>
+      <li>Hojas de datos de seguridad</li>
+    </ul>
+    
+    <div style="margin-top: 2rem; text-align: center;">
+      <a href="https://wa.me/528123217906?text=Hola%2C%20me%20interesa%20cotizar%20servicios%20de%20Cumplimiento%20Normativo" 
+         target="_blank"
+         class="primary-button" 
+         style="display: inline-block; padding: 1rem 2rem; background: linear-gradient(135deg, #0568B6, #0AB0E1); color: white; border-radius: 30px; text-decoration: none; font-weight: 600; box-shadow: 0 5px 20px rgba(5, 104, 182, 0.3); transition: all 0.3s;">
+        💬 Solicitar Cotización
+      </a>
+    </div>
+  </div>
+  
+  <!-- Modal 6: Zona Protegida -->
+  <div class="modal" id="modal6">
+    <button class="modal-close" onclick="closeModal(6)">&times;</button>
+    <h3>Zona Protegida 24/7</h3>
+    <p>Servicio especializado en atención de emergencias médicas y traumatología.</p>
+    
+    <h4>Incluye:</h4>
+    <ul>
+      <li>Disponibilidad 24/7</li>
+      <li>Valoración en clínica, empresa o domicilio</li>
+      <li>Seguimiento en caso de requerir cirugía o tratamiento especializado</li>
+    </ul>
+    
+    <h4>Traumatología en tu empresa:</h4>
+    <p>Atendemos urgencias traumatológicas 24/7 sin necesidad de traslado. Evaluamos y desarrollamos el tratamiento adecuado directamente en tu empresa o domicilio del colaborador.</p>
+    
+    <h4>Beneficios:</h4>
+    <ul>
+      <li>Atención inmediata</li>
+      <li>Menor tiempo de incapacidad</li>
+      <li>Evita traslados innecesarios</li>
+      <li>Mejora la recuperación del colaborador</li>
+    </ul>
+    
+    <div style="margin-top: 2rem; text-align: center;">
+      <a href="https://wa.me/528123217906?text=Hola%2C%20me%20interesa%20cotizar%20Zona%20Protegida%2024%2F7" 
+         target="_blank"
+         class="primary-button" 
+         style="display: inline-block; padding: 1rem 2rem; background: linear-gradient(135deg, #0568B6, #0AB0E1); color: white; border-radius: 30px; text-decoration: none; font-weight: 600; box-shadow: 0 5px 20px rgba(5, 104, 182, 0.3); transition: all 0.3s;">
+        💬 Solicitar Cotización
+      </a>
+    </div>
+  </div>
+  
+  <!-- Modal 7: Aviso de Privacidad -->
+  <div class="modal" id="modal-privacidad">
+    <button class="modal-close" onclick="closePrivacyModal()">&times;</button>
+    <h3>Aviso de Privacidad</h3>
+    <p><strong>Responsable de los datos personales:</strong> Medical Workplace SAPI de CV</p>
+    <p><strong>Domicilio fiscal:</strong> Av. E sexta, HDA 1E 131, Col. Santa Isabel, 66612 Cdad. Apodaca, N.L.</p>
+    <p>Corehlance, a través de Medical Workplace SAPI de CV, recopila y trata sus datos personales con las siguientes finalidades:</p>
+    <ul>
+      <li>Prestación de servicios de salud ocupacional</li>
+      <li>Elaboración de expedientes clínicos y laborales</li>
+      <li>Seguimiento a solicitudes y cotizaciones</li>
+      <li>Comunicación sobre nuestros servicios</li>
+      <li>Cumplimiento de obligaciones legales y normativas</li>
+    </ul>
+    <p><strong>Uso de datos:</strong> Los datos personales no serán transferidos a terceros sin su consentimiento, salvo las excepciones previstas en la Ley Federal de Protección de Datos Personales en Posesión de los Particulares.</p>
+    <p><strong>Derechos ARCO:</strong> Usted tiene derecho de acceder, rectificar, cancelar u oponerse al tratamiento de sus datos personales. Para ejercer estos derechos, envíe su solicitud por escrito a: <a href="mailto:ventas.noreste@corehlance.com" style="color: var(--primary-blue); font-weight: 600;">ventas.noreste@corehlance.com</a></p>
+    <p><strong>Modificaciones al aviso:</strong> Este aviso de privacidad puede ser modificado para cumplir con cambios en la legislación. Cualquier modificación será publicada en este sitio web.</p>
+    <p style="text-align: right; margin-top: 2rem; font-style: italic; color: #666;">Última actualización: Enero 2025</p>
+  </div>
+
+  <!-- Header -->
+  <header>
+    <nav>
+      <a href="#top" class="logo">
+        <img src="logo-corehlance-color-1.png" alt="Corehlance" style="height: 50px;">
+      </a>
+      <div class="nav-links">
+        <a href="#servicios">Servicios</a>
+        <a href="#nosotros">Nosotros</a>
+        <a href="#contacto">Contacto</a>
+        <a href="https://wa.me/528123217906" class="cta-button">📞 81 2321 7906</a>
+      </div>
+      <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-text">
+        <h1>Protegemos la <span>Salud Integral</span> de tus Colaboradores</h1>
+        <p>Somos especialistas en salud ocupacional. Cuidamos el bienestar físico, mental y social de tu equipo con servicios médicos profesionales y programas preventivos.</p>
+        <div class="hero-buttons">
+          <a href="https://wa.me/528123217906" class="primary-button">
+            💬 Solicita una Cotización
+          </a>
+          <a href="#servicios" class="secondary-button">Ver Servicios</a>
+        </div>
+      </div>
+      <div class="hero-image">
+        <img src="icon-corehlance-color-1.png" alt="Cruz Corehlance" style="max-width: 300px; width: 100%;">
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="about" id="nosotros">
+    <div class="about-container">
+      <div class="about-header">
+        <h2>Nosotros</h2>
+      </div>
+      <div class="about-content">
+        <div class="about-text">
+          <h3>¿Quiénes somos?</h3>
+          <p>En Corehlance somos una empresa especializada en salud ocupacional. Protegemos la integridad física, mental y social de tus colaboradores mediante servicios médicos, programas preventivos y cumplimiento normativo, sin interrumpir la operación diaria de tu empresa.</p>
+          
+          <h3>Misión</h3>
+          <p>Promover el bienestar integral de los trabajadores a través de servicios de salud ocupacional confiables, personalizados y alineados con la normativa vigente.</p>
+          
+          <h3>Visión</h3>
+          <p>Convertirnos en líderes en salud ocupacional en México, reconocidos por nuestro profesionalismo, innovación y calidad médica.</p>
+        </div>
+        
+        <div class="values-section">
+          <h3 style="font-size: 1.5rem; color: var(--primary-blue); margin-bottom: 1.5rem;">Nuestros Valores</h3>
+          <div class="values-grid">
+            <div class="value-item">
+              <div class="value-icon">🛡️</div>
+              <div>
+                <strong>Prevención</strong>
+              </div>
+            </div>
+            <div class="value-item">
+              <div class="value-icon">❤️</div>
+              <div>
+                <strong>Empatía</strong>
+              </div>
+            </div>
+            <div class="value-item">
+              <div class="value-icon">🤝</div>
+              <div>
+                <strong>Compromiso</strong>
+              </div>
+            </div>
+            <div class="value-item">
+              <div class="value-icon">👔</div>
+              <div>
+                <strong>Profesionalismo</strong>
+              </div>
+            </div>
+            <div class="value-item">
+              <div class="value-icon">✅</div>
+              <div>
+                <strong>Responsabilidad</strong>
+              </div>
+            </div>
+            <div class="value-item">
+              <div class="value-icon">🔒</div>
+              <div>
+                <strong>Confianza</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section class="services" id="servicios">
+    <div class="section-header">
+      <h2>Servicios Integrales de Salud Ocupacional</h2>
+      <p>Soluciones completas adaptadas a las necesidades de tu empresa</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card" onclick="openModal(1)">
+        <div class="service-icon">🏥</div>
+        <h3>Estudios Clínicos Laborales</h3>
+        <p>Exámenes médicos de ingreso, periódicos y de salida. Laboratorio clínico, audiometrías, espirometrías, electrocardiogramas y rayos X en tus instalaciones.</p>
+        <span style="display:block; margin-top: 1rem; color: var(--primary-blue); font-weight: 600; font-size: 0.95rem;">+ Más información →</span>
+      </div>
+      <div class="service-card" onclick="openModal(2)">
+        <div class="service-icon">🚑</div>
+        <h3>Unidad Móvil Médica</h3>
+        <p>Consultorio móvil equipado para realizar estudios directamente en tu empresa. Ideal para grupos grandes con tecnología de punta.</p>
+        <span style="display:block; margin-top: 1rem; color: var(--primary-blue); font-weight: 600; font-size: 0.95rem;">+ Más información →</span>
+      </div>
+      <div class="service-card" onclick="openModal(3)">
+        <div class="service-icon">👨‍⚕️</div>
+        <h3>Médico In House</h3>
+        <p>Asignamos personal médico y de enfermería capacitado en tus instalaciones para atención continua y gestión de riesgos laborales.</p>
+        <span style="display:block; margin-top: 1rem; color: var(--primary-blue); font-weight: 600; font-size: 0.95rem;">+ Más información</span>
+      </div>
+      <div class="service-card" onclick="openModal(4)">
+        <div class="service-icon">💪</div>
+        <h3>Programa Wellness</h3>
+        <p>Planes integrales de bienestar con nutriólogos, psicólogos, fisioterapeutas y coaches deportivos para mejorar la calidad de vida.</p>
+        <span style="display:block; margin-top: 1rem; color: var(--primary-blue); font-weight: 600; font-size: 0.95rem;">+ Más información</span>
+      </div>
+      <div class="service-card" onclick="openModal(5)">
+        <div class="service-icon">📋</div>
+        <h3>Cumplimiento Normativo</h3>
+        <p>Te ayudamos a cumplir con las NOM-035, NOM-036 y NOM-037. Evaluaciones, reportes y planes de acción personalizados.</p>
+        <span style="display:block; margin-top: 1rem; color: var(--primary-blue); font-weight: 600; font-size: 0.95rem;">+ Más información</span>
+      </div>
+      <div class="service-card" onclick="openModal(6)">
+        <div class="service-icon">🚨</div>
+        <h3>Zona Protegida 24/7</h3>
+        <p>Servicio de urgencias traumatológicas disponible las 24 horas. Atención inmediata en clínica, empresa o domicilio.</p>
+        <span style="display:block; margin-top: 1rem; color: var(--primary-blue); font-weight: 600; font-size: 0.95rem;">+ Más información</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="features">
+    <div class="section-header">
+      <h2>¿Por qué elegir Corehlance?</h2>
+      <p>Ventajas que marcan la diferencia en salud ocupacional</p>
+    </div>
+    <div class="features-container">
+      <div class="feature">
+        <div class="feature-icon">⚡</div>
+        <h3>Servicio en Sitio</h3>
+        <p>Sin traslados. Realizamos todos los estudios directamente en tus instalaciones.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">📊</div>
+        <h3>Resultados Inmediatos</h3>
+        <p>Entrega de resultados el mismo día con expediente clínico electrónico.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">🏆</div>
+        <h3>Personal Certificado</h3>
+        <p>Médicos y especialistas con experiencia en salud ocupacional e industrial.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">🤝</div>
+        <h3>Convenios Hospitalarios</h3>
+        <p>Red de hospitales aliados para atención especializada cuando se requiera.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta-section">
+    <div class="cta-content">
+      <h2>Cuidamos lo más valioso de tu empresa: las personas</h2>
+      <p>Agenda una cita y descubre cómo podemos mejorar la salud y productividad de tu equipo</p>
+      <a href="https://wa.me/528123217906" class="cta-white-button">
+        💬 Contactar por WhatsApp
+      </a>
+    </div>
+  </section>
+
+  <!-- Formulario de Contacto -->
+  <section class="contact-form-section" id="contacto-form">
+    <div class="contact-container">
+      <h2>Contáctanos</h2>
+      <p>Envíanos un mensaje y responderemos lo antes posible.</p>
+      <!-- Formulario de contacto con Formspree -->
+      <form action="https://formspree.io/f/mqalqelj" method="POST" class="contact-form">
+        <input type="text" name="nombre" placeholder="Tu nombre" required>
+        <input type="email" name="email" placeholder="Tu correo" required>
+        <input type="tel" name="telefono" placeholder="Tu teléfono (opcional)">
+        <select name="servicio" required>
+          <option value="">¿Qué servicio te interesa?</option>
+          <option value="estudios-clinicos">Estudios Clínicos</option>
+          <option value="unidad-movil">Unidad Móvil</option>
+          <option value="medico-inhouse">Médico In House</option>
+          <option value="wellness">Programa Wellness</option>
+          <option value="normatividad">Cumplimiento Normativo</option>
+          <option value="zona-protegida">Zona Protegida 24/7</option>
+          <option value="otro">Otro</option>
+        </select>
+        <textarea name="mensaje" placeholder="Escribe tu mensaje" rows="5" required></textarea>
+        <!-- Campos ocultos para funcionalidad -->
+        <input type="hidden" name="_subject" value="Nuevo mensaje desde la página web de Corehlance">
+        <input type="text" name="_gotcha" style="display:none">
+        <button type="submit" class="submit-button">Enviar mensaje</button>
+      </form>
+      <div id="form-success" class="form-message success" style="display: none;">
+        <strong>✅ ¡Mensaje enviado exitosamente!</strong><br>
+        Gracias por contactarnos. Nos pondremos en contacto contigo lo antes posible.
+      </div>
+      <div id="form-error" class="form-message error" style="display: none;">
+        <strong>❌ Error al enviar el mensaje</strong><br>
+        Por favor, intenta de nuevo o contáctanos directamente por <a href="https://wa.me/528123217906" target="_blank" style="color: #a02d2d; font-weight: bold; text-decoration: underline;">WhatsApp 💬</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mapa de Ubicación -->
+  <section class="map-section">
+    <div class="map-container">
+      <h2>¿Dónde estamos?</h2>
+      <p>Visítanos en nuestras instalaciones en Apodaca, N.L.</p>
+      <div class="map-wrapper">
+        <iframe 
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3592.430002177709!2d-100.2485119!3d25.7893843!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2db12737dd08877b%3A0x41a7aa3016e1e289!2sCorehlance!5e0!3m2!1ses-419!2smx!4v1753408119486!5m2!1ses-419!2smx" 
+          width="100%" 
+          height="400" 
+          style="border:0; border-radius: 20px; box-shadow: 0 5px 20px rgba(0,0,0,0.1);" 
+          allowfullscreen="" 
+          loading="lazy" 
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer id="contacto">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>Corehlance</h3>
+        <p>Líderes en salud ocupacional en México. Promovemos el bienestar integral de los trabajadores con servicios confiables y personalizados.</p>
+      </div>
+      <div class="footer-section">
+        <h3>Servicios</h3>
+        <p>
+          <a href="#servicios">Estudios Clínicos</a><br>
+          <a href="#servicios">Unidad Móvil</a><br>
+          <a href="#servicios">Médico In House</a><br>
+          <a href="#servicios">Programa Wellness</a>
+        </p>
+      </div>
+      <div class="footer-section">
+        <h3>Contacto</h3>
+        <p>
+          📧 ventas.noreste@corehlance.com<br>
+          📞 <a href="https://wa.me/528123217906">81 2321 7906</a><br>
+          📍 Av. E sexta, HDA 1E 131<br>
+          Col. Santa Isabel, 66612<br>
+          Cdad. Apodaca, N.L.<br>
+          🕐 Lun-Sáb | 09:00-18:00 hrs
+        </p>
+      </div>
+      <div class="footer-section">
+        <h3>Certificaciones</h3>
+        <p>Personal certificado CAOHC y NIOSH. Cumplimiento total con las Normas Oficiales Mexicanas en materia de salud ocupacional.</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Corehlance. Todos los derechos reservados. | <a href="#" onclick="openPrivacyModal(); return false;">Aviso de Privacidad</a></p>
+    </div>
+  </footer>
+
+  <script>
+    // Modal functionality
+    function openModal(modalNumber) {
+      const overlay = document.getElementById('modalOverlay');
+      const modal = document.getElementById('modal' + modalNumber);
+      overlay.classList.add('active');
+      modal.classList.add('active');
+      modal.style.display = 'block';
+      document.body.style.overflow = 'hidden';
+    }
+    
+    function closeModal(modalNumber) {
+      const overlay = document.getElementById('modalOverlay');
+      const modal = document.getElementById('modal' + modalNumber);
+      overlay.classList.remove('active');
+      modal.classList.remove('active');
+      setTimeout(() => {
+        modal.style.display = 'none';
+      }, 300);
+      document.body.style.overflow = 'auto';
+    }
+    
+    function closeModalOverlay() {
+      const activeModal = document.querySelector('.modal.active');
+      if (activeModal) {
+        if (activeModal.id === 'modal-privacidad') {
+          closePrivacyModal();
+        } else {
+          const modalNumber = activeModal.id.replace('modal', '');
+          closeModal(modalNumber);
+        }
+      }
+    }
+    
+    // Mobile menu toggle
+    function toggleMobileMenu() {
+      const navLinks = document.querySelector('.nav-links');
+      navLinks.classList.toggle('active');
+    }
+    
+    // Smooth scroll - incluye el logo
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        if (targetId === '#top' || targetId === '#') {
+          window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+          });
+        } else {
+          const target = document.querySelector(targetId);
+          if (target) {
+            target.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start'
+            });
+          }
+        }
+      });
+    });
+    
+    // Header shadow on scroll
+    window.addEventListener('scroll', () => {
+      const header = document.querySelector('header');
+      if (window.scrollY > 10) {
+        header.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+      } else {
+        header.style.boxShadow = 'none';
+      }
+    });
+    
+    // Mostrar mensaje de éxito local sin redirección
+    const contactForm = document.querySelector('.contact-form');
+    const successMessage = document.getElementById('form-success');
+    const errorMessage = document.getElementById('form-error');
+    
+    if (contactForm) {
+      contactForm.addEventListener('submit', async function(e) {
+        e.preventDefault(); // evitar redirección por defecto
+        
+        // Ocultar mensajes previos
+        successMessage.style.display = 'none';
+        errorMessage.style.display = 'none';
+        
+        const button = this.querySelector('.submit-button');
+        const originalText = button.innerHTML;
+        button.innerHTML = '<span style="display: inline-block; animation: spin 1s linear infinite;">⟳</span> Enviando...';
+        button.style.opacity = '0.7';
+        button.disabled = true;
+        
+        const formData = new FormData(this);
+        
+        try {
+          const response = await fetch(this.action, {
+            method: this.method,
+            body: formData,
+            headers: {
+              'Accept': 'application/json'
+            }
+          });
+          
+          if (response.ok) {
+            this.reset();
+            successMessage.style.display = 'block';
+            button.innerHTML = originalText;
+            button.style.opacity = '1';
+            button.disabled = false;
+            
+            // Ocultar mensaje después de 10 segundos
+            setTimeout(() => {
+              successMessage.style.display = 'none';
+            }, 10000);
+            
+            // Scroll suave hacia el mensaje de éxito
+            successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          } else {
+            errorMessage.style.display = 'block';
+            button.innerHTML = originalText;
+            button.style.opacity = '1';
+            button.disabled = false;
+            
+            // Ocultar mensaje de error después de 10 segundos
+            setTimeout(() => {
+              errorMessage.style.display = 'none';
+            }, 10000);
+            
+            errorMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }
+        } catch (error) {
+          errorMessage.style.display = 'block';
+          button.innerHTML = originalText;
+          button.style.opacity = '1';
+          button.disabled = false;
+          
+          // Ocultar mensaje de error después de 10 segundos
+          setTimeout(() => {
+            errorMessage.style.display = 'none';
+          }, 10000);
+          
+          errorMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+      });
+    }
+    
+    // Funciones para el modal de Aviso de Privacidad
+    function openPrivacyModal() {
+      const overlay = document.getElementById('modalOverlay');
+      const modal = document.getElementById('modal-privacidad');
+      overlay.classList.add('active');
+      modal.classList.add('active');
+      modal.style.display = 'block';
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closePrivacyModal() {
+      const overlay = document.getElementById('modalOverlay');
+      const modal = document.getElementById('modal-privacidad');
+      overlay.classList.remove('active');
+      modal.classList.remove('active');
+      setTimeout(() => {
+        modal.style.display = 'none';
+      }, 300);
+      document.body.style.overflow = 'auto';
+    }
+  </script>
+
+  <!-- Botón flotante de WhatsApp -->
+  <a href="https://wa.me/528123217906" class="whatsapp-float" target="_blank" title="Envíanos un WhatsApp">
+    <svg viewBox="0 0 24 24" width="35" height="35" fill="white">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+    </svg>
+  </a>
+</body>
+</html>
