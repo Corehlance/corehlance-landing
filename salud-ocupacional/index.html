@@ -46,6 +46,40 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <meta name="format-detection" content="telephone=no">
     
+    <!-- Google tag (gtag.js) - único -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-11323969828"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){ dataLayer.push(arguments); }
+      gtag('js', new Date());
+
+      // GA4
+      gtag('config', 'G-1GG0G53WCY');
+
+      // Google Ads (con EM habilitado)
+      gtag('config', 'AW-11323969828', { allow_enhanced_conversions: true });
+
+      // Conversión de WhatsApp (click + redirect seguro)
+      function gtag_report_conversion(url) {
+        const callback = function(){ if (typeof url !== 'undefined') window.location = url; };
+        gtag('event', 'conversion', {
+          send_to: 'AW-11323969828/sNraCKe7mqcbEKSi2Jcq',
+          value: 1.0,
+          currency: 'MXN',
+          event_callback: callback
+        });
+        setTimeout(callback, 400);
+        return false;
+      }
+    </script>
+    
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-KK27JQRT');</script>
+    
     <!-- Open Graph -->
     <meta property="og:locale" content="es_MX">
     <meta property="og:site_name" content="Corehlance">
@@ -1243,8 +1277,6 @@
     <script>
         // Initialize dataLayer
         window.dataLayer = window.dataLayer || [];
-
-        // WhatsApp click tracking con servicio específico
         const whatsappTracking = {
             'wa-header': { service: 'general' },
             'wa-hero-primary': { service: 'cotizacion_general' },
