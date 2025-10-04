@@ -12,10 +12,12 @@
       gtag('js', new Date());
       gtag('config', 'AW-11323969828');
       
-      // Función para reportar conversión con callback (abre en nueva pestaña)
+      // Función para reportar conversión con timeout de seguridad
       function gtag_report_conversion(url) {
         const callback = function() {
-          if (typeof url !== 'undefined') window.open(url, '_blank', 'noopener,noreferrer');
+          if (typeof url !== 'undefined') {
+            window.location = url;
+          }
         };
         gtag('event', 'conversion', {
           'send_to': 'AW-11323969828/sNraCKe7mqcbEKSi2Jcq',
@@ -23,6 +25,9 @@
           'currency': 'MXN',
           'event_callback': callback
         });
+        
+        // Espera 400ms para asegurar que el evento se envíe antes de redirigir
+        setTimeout(callback, 400);
         return false;
       }
     </script>
