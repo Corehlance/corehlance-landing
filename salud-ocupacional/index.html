@@ -693,42 +693,47 @@
         
         /* Responsive */
         @media (max-width: 768px) {
+            header {
+                padding: 0.5rem 0;
+            }
+            
             nav {
                 flex-direction: column;
-                gap: 0.8rem;
-                padding: 0.8rem 3%;
+                gap: 0.5rem;
+                padding: 0.5rem 3%;
             }
             
             .logo {
-                gap: 0.8rem;
+                gap: 0.6rem;
             }
             
             .logo img {
-                height: 32px !important;
-                max-width: 110px;
+                height: 28px !important;
+                max-width: 100px;
             }
             
             .logo a:last-child img {
-                height: 38px !important;
-                max-width: 130px;
+                height: 33px !important;
+                max-width: 115px;
             }
             
             .cta-button-header {
                 position: static;
-                width: 100%;
+                width: calc(100% - 2rem);
                 max-width: 100%;
                 justify-content: center;
-                font-size: 0.85rem;
-                padding: 0.6rem 1rem;
+                font-size: 0.8rem;
+                padding: 0.5rem 0.8rem;
+                margin: 0 1rem;
             }
             
             .cta-button-header svg {
-                width: 18px;
-                height: 18px;
+                width: 16px;
+                height: 16px;
             }
             
             .hero {
-                padding: 90px 5% 50px;
+                padding: 85px 5% 50px;
             }
             
             .hero-content {
