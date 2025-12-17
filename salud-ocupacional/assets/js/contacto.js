@@ -49,7 +49,7 @@ $( document ).ready(function() {
 					console.log(result);
 					if(result === "Accepted") {
 						$('form').each(function() { this.reset() });
-						window.open('gracias.html','_self')
+						window.open('/salud-ocupacional/gracias.html','_self')
 					} else {
 						alert ('Ha ocurrido un error al enviar la forma de contacto, intenta mas tarde');
 					}
