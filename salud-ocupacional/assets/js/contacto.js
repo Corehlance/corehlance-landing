@@ -11,7 +11,7 @@ $( document ).ready(function() {
 		var nombre = $("input[name='nombre']", this).val();
 		var correo = $("input[name='correo']", this).val();
 		var telefono = $("input[name='telefono']", this).val();
-		var servicio = $("input[name='servicio']", this).val();
+		var servicio = $("#servicio").val();
 		var mensaje = $("textarea[name='mensaje']", this).val();
 
 		if(!error && nombre.length <= 2){ error = true;	msj = "El campo nombre es requerido";	}

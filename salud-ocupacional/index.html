@@ -604,7 +604,16 @@
                         <input type="number" class="form-control" placeholder="Teléfono:" name="telefono">
                     </div>
                     <div class="mb-2">
-                        <input type="text" class="form-control" placeholder="Servicio que buscas:" name="servicio">
+                        <select class="form-control" name="servicio" id="servicio" required>
+                            <option value="">¿Qué servicio te interesa?</option>
+                            <option value="estudios-clinicos">Estudios Clínicos</option>
+                            <option value="unidad-movil">Unidad Móvil</option>
+                            <option value="medico-inhouse">Médico In House</option>
+                            <option value="wellness">Programa Wellness</option>
+                            <option value="normatividad">Cumplimiento Normativo</option>
+                            <option value="zona-protegida">Zona Protegida 24/7</option>
+                            <option value="otro">Otro</option>
+                        </select>
                     </div>
                     <div class="mb-3">
                         <textarea class="form-control" placeholder="Mensaje:" name="mensaje"></textarea>
