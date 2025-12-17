@@ -1,1377 +1,687 @@
+
 <!DOCTYPE html>
-<html lang="es-MX">
+<html lang="es" ng-app="Futurite">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-11323969828"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'AW-11323969828');
-      
-      // Función para reportar conversión con timeout de seguridad
-      function gtag_report_conversion(url) {
-        const callback = function() {
-          if (typeof url !== 'undefined') {
-            window.location = url;
-          }
-        };
-        gtag('event', 'conversion', {
-          'send_to': 'AW-11323969828/sNraCKe7mqcbEKSi2Jcq',
-          'value': 1.0,
-          'currency': 'MXN',
-          'event_callback': callback
-        });
-        
-        // Espera 400ms para asegurar que el evento se envíe antes de redirigir
-        setTimeout(callback, 400);
-        return false;
-      }
-    </script>
-    
-    <title>Salud Ocupacional Integral para Empresas en México | Corehlance</title>
-    <meta name="description" content="Cumple con STPS y protege a tu equipo con médicos en planta, unidad móvil y estudios clínicos con resultados el mismo día.">
-    <meta name="robots" content="index,follow">
-    <meta name="theme-color" content="#0568B6">
-    <base href="/salud-ocupacional/">
-    <link rel="canonical" href="https://www.corehlance.com/salud-ocupacional">
-    <link rel="icon" type="image/x-icon" href="corehlance.ico">
-    <link rel="shortcut icon" type="image/x-icon" href="corehlance.ico">
-    <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
-    <link rel="preconnect" href="https://www.google-analytics.com" crossorigin>
+    <title>
+        Corehlance | Salud ocupacional
+    </title>
+    <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
+
+    <!-- Bootstrap -->
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <meta name="format-detection" content="telephone=no">
-    
-    <!-- Google tag (gtag.js) - único -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-11323969828"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){ dataLayer.push(arguments); }
-      gtag('js', new Date());
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
 
-      // GA4
-      gtag('config', 'G-1GG0G53WCY');
+    <!-- CSS -->
+    <link href="assets/css/main.css" rel="stylesheet" />
 
-      // Google Ads (con EM habilitado)
-      gtag('config', 'AW-11323969828', { allow_enhanced_conversions: true });
-
-      // Conversión de WhatsApp (click + redirect seguro)
-      function gtag_report_conversion(url) {
-        const callback = function(){ if (typeof url !== 'undefined') window.location = url; };
-        gtag('event', 'conversion', {
-          send_to: 'AW-11323969828/sNraCKe7mqcbEKSi2Jcq',
-          value: 1.0,
-          currency: 'MXN',
-          event_callback: callback
-        });
-        setTimeout(callback, 400);
-        return false;
-      }
-    </script>
+    <!-- Analytics code -->
     
-    <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-KK27JQRT');</script>
-    
-    <!-- Open Graph -->
-    <meta property="og:locale" content="es_MX">
-    <meta property="og:site_name" content="Corehlance">
-    <meta property="og:title" content="Salud Ocupacional Integral para Empresas en México | Corehlance">
-    <meta property="og:description" content="Cumple con STPS y protege a tu equipo con médicos en planta, unidad móvil y estudios clínicos con resultados el mismo día.">
-    <meta property="og:url" content="https://www.corehlance.com/salud-ocupacional">
-    <meta property="og:type" content="website">
-    <meta property="og:image" content="https://www.corehlance.com/assets/so-hero.jpg">
-    <meta property="og:image:secure_url" content="https://www.corehlance.com/assets/so-hero.jpg">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
-    
-    <!-- Twitter -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Salud Ocupacional Integral | Corehlance">
-    <meta name="twitter:description" content="Médicos en planta, unidad móvil, estudios clínicos. Cumplimiento NOM-035, NOM-036.">
-    <meta name="twitter:image" content="https://www.corehlance.com/assets/so-hero.jpg">
-    
-    <!-- JSON-LD Organization + ContactPoint -->
-    <script type="application/ld+json">
-    {
-      "@context":"https://schema.org",
-      "@type":"MedicalBusiness",
-      "@id":"https://www.corehlance.com/#organization",
-      "name":"Corehlance",
-      "url":"https://www.corehlance.com",
-      "logo":"https://www.corehlance.com/assets/logo.png",
-      "telephone":"+52 81 2859 3079",
-      "areaServed":"MX",
-      "sameAs":["https://maps.app.goo.gl/qigVNK9SSsNV6dLy7"],
-      "address":{
-        "@type":"PostalAddress",
-        "streetAddress":"Av. E sexta, HDA 1E 131, Col. Santa Isabel",
-        "addressLocality":"Cdad. Apodaca",
-        "postalCode":"66612",
-        "addressRegion":"NL",
-        "addressCountry":"MX"
-      },
-      "openingHoursSpecification":[{
-        "@type":"OpeningHoursSpecification",
-        "dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
-        "opens":"09:00",
-        "closes":"18:00"
-      }],
-      "department":{
-        "@type":"MedicalBusiness",
-        "name":"Salud Ocupacional",
-        "url":"https://www.corehlance.com/salud-ocupacional",
-        "serviceArea":"MX",
-        "makesOffer":[
-          {"@type":"Offer","name":"Médico y Enfermería en Planta"},
-          {"@type":"Offer","name":"Estudios Clínicos Laborales"},
-          {"@type":"Offer","name":"Unidad Móvil"},
-          {"@type":"Offer","name":"Evaluaciones Psicosociales (NOM-035)"},
-          {"@type":"Offer","name":"Programas de Bienestar"}
-        ]
-      }
-    }
-    </script>
-    
-    <!-- JSON-LD FAQ -->
-    <script type="application/ld+json">
-    {
-      "@context":"https://schema.org",
-      "@type":"FAQPage",
-      "mainEntity":[
-        {
-          "@type":"Question",
-          "name":"¿Realizan estudios clínicos en sitio con unidad móvil?",
-          "acceptedAnswer":{"@type":"Answer","text":"Sí, contamos con unidad móvil equipada (rayos X, audiometría, espirometría) para atender en planta o patios industriales."}
-        },
-        {
-          "@type":"Question",
-          "name":"¿Entregan resultados el mismo día?",
-          "acceptedAnswer":{"@type":"Answer","text":"Sí, integramos expediente clínico electrónico y entrega de resultados el mismo día según el estudio realizado."}
-        },
-        {
-          "@type":"Question",
-          "name":"¿Apoyan con cumplimiento NOM-035 y NOM-036?",
-          "acceptedAnswer":{"@type":"Answer","text":"Sí, realizamos diagnósticos, evaluaciones y documentación para auditorías de STPS con trazabilidad digital."}
-        }
-      ]
-    }
-    </script>
-    
-    <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-KK27JQRT');</script>
-    
-    <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-KK27JQRT');</script>
-    
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        html {
-            scroll-behavior: smooth;
-        }
-        
-        @media (prefers-reduced-motion: reduce) {
-            * {
-                animation: none !important;
-                transition: none !important;
-            }
-            html {
-                scroll-behavior: auto !important;
-            }
-        }
-        
-        :root {
-            --primary-blue: #0568B6;
-            --secondary-blue: #0AB0E1;
-            --light-blue: #82E6F3;
-            --accent-green: #21DC99;
-            --whatsapp-green: #25d366;
-            --white: #FFFFFF;
-            --dark-text: #1a1a1a;
-            --light-gray: #f8f9fa;
-        }
-        
-        body {
-            font-family: 'Inter', sans-serif;
-            color: var(--dark-text);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-        
-        /* Header */
-        header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
-            z-index: 1000;
-            transition: all 0.3s ease;
-        }
-        
-        nav {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 1rem 5%;
-            max-width: 1400px;
-            margin: 0 auto;
-            position: relative;
-        }
-        
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 2rem;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-        
-        .logo a {
-            display: flex;
-            align-items: center;
-            transition: opacity 0.3s ease;
-        }
-        
-        .logo a:hover {
-            opacity: 0.8;
-        }
-        
-        .logo img {
-            height: 60px;
-            width: auto;
-            object-fit: contain;
-            max-width: 100%;
-        }
-        
-        .logo a:last-child img {
-            height: 73px;
-        }
-        
-        .cta-button-header {
-            background: linear-gradient(135deg, var(--whatsapp-green), #20c05c);
-            color: white;
-            padding: 0.7rem 1.3rem;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s;
-            box-shadow: 0 2px 10px rgba(37, 211, 102, 0.3);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            border: 2px solid transparent;
-            position: absolute;
-            right: 5%;
-        }
-        
-        .cta-button-header:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
-            border-color: rgba(255, 255, 255, 0.3);
-        }
-        
-        .cta-button-header svg {
-            width: 20px;
-            height: 20px;
-            fill: currentColor;
-        }
-        
-        /* Hero Section */
-        .hero {
-            padding: 120px 5% 80px;
-            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .hero::before {
-            content: '';
-            position: absolute;
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, var(--light-blue) 0%, transparent 70%);
-            opacity: 0.3;
-            border-radius: 50%;
-            top: -200px;
-            right: -200px;
-            animation: float 20s infinite ease-in-out;
-        }
-        
-        @keyframes float {
-            0%, 100% { transform: translateY(0) translateX(0); }
-            50% { transform: translateY(20px) translateX(-20px); }
-        }
-        
-        .hero-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-            position: relative;
-            z-index: 1;
-        }
-        
-        .hero-text {
-            text-align: left;
-        }
-        
-        .hero-images {
-            position: relative;
-            height: 500px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .hero-image {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            opacity: 0;
-            transition: opacity 1s ease-in-out;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
-        }
-        
-        .hero-image.active {
-            opacity: 1;
-        }
-        
-        .hero-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        
-        .hero h1 {
-            font-size: clamp(2rem, 5vw, 3.5rem);
-            font-weight: 800;
-            color: var(--dark-text);
-            margin-bottom: 1.5rem;
-            line-height: 1.2;
-        }
-        
-        .hero h1 span {
-            background: linear-gradient(135deg, var(--primary-blue), var(--accent-green));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        .hero p {
-            font-size: 1.3rem;
-            color: #666;
-            margin-bottom: 3rem;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        
-        .hero-buttons {
-            display: flex;
-            gap: 1.5rem;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-        
-        .whatsapp-btn {
-            background: linear-gradient(135deg, var(--whatsapp-green), #20c05c);
-            color: white;
-            padding: 1rem 2.5rem;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.1rem;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.7rem;
-            transition: all 0.3s;
-            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
-            border: 2px solid transparent;
-        }
-        
-        .whatsapp-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
-            border-color: rgba(255, 255, 255, 0.3);
-        }
-        
-        .whatsapp-btn svg {
-            width: 24px;
-            height: 24px;
-            fill: currentColor;
-        }
-        
-        .whatsapp-btn-secondary {
-            background: white;
-            color: var(--whatsapp-green);
-            border: 2px solid var(--whatsapp-green);
-        }
-        
-        .whatsapp-btn-secondary:hover {
-            background: var(--whatsapp-green);
-            color: white;
-        }
-        
-        .whatsapp-btn-secondary svg {
-            fill: currentColor;
-        }
-        
-        /* Benefits Section */
-        .benefits {
-            padding: 80px 5%;
-            background: white;
-        }
-        
-        .section-header {
-            text-align: center;
-            max-width: 800px;
-            margin: 0 auto 4rem;
-        }
-        
-        .section-header h2 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            color: var(--dark-text);
-        }
-        
-        .section-header p {
-            font-size: 1.1rem;
-            color: #666;
-        }
-        
-        .benefits-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2.5rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        .benefit-card {
-            background: white;
-            border-radius: 20px;
-            padding: 2.5rem;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
-            transition: all 0.3s;
-            border-top: 4px solid var(--primary-blue);
-        }
-        
-        .benefit-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
-        }
-        
-        .benefit-icon {
-            width: 70px;
-            height: 70px;
-            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            margin-bottom: 1.5rem;
-        }
-        
-        .benefit-card h3 {
-            font-size: 1.3rem;
-            color: var(--dark-text);
-            margin-bottom: 1rem;
-        }
-        
-        .benefit-card p {
-            color: #666;
-            line-height: 1.8;
-        }
-        
-        /* Services Section */
-        .services {
-            padding: 80px 5%;
-            background: var(--light-gray);
-        }
-        
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2.5rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        .service-card {
-            background: white;
-            border-radius: 20px;
-            padding: 2.5rem;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
-            transition: all 0.3s;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .service-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 5px;
-            background: linear-gradient(90deg, var(--primary-blue), var(--accent-green));
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.3s;
-        }
-        
-        .service-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
-        }
-        
-        .service-card:hover::before {
-            transform: scaleX(1);
-        }
-        
-        .service-icon {
-            width: 70px;
-            height: 70px;
-            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
-            border-radius: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            margin-bottom: 1.5rem;
-        }
-        
-        .service-card h3 {
-            font-size: 1.4rem;
-            margin-bottom: 1rem;
-            color: var(--dark-text);
-        }
-        
-        .service-card p {
-            color: #666;
-            line-height: 1.8;
-            margin-bottom: 1.5rem;
-        }
-        
-        .service-whatsapp {
-            background: linear-gradient(135deg, var(--whatsapp-green), #20c05c);
-            color: white;
-            padding: 0.8rem 1.6rem;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 600;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.6rem;
-            transition: all 0.3s;
-            font-size: 0.95rem;
-            box-shadow: 0 2px 10px rgba(37, 211, 102, 0.3);
-            border: 2px solid transparent;
-        }
-        
-        .service-whatsapp:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
-            border-color: rgba(255, 255, 255, 0.3);
-        }
-        
-        .service-whatsapp svg {
-            width: 20px;
-            height: 20px;
-            fill: currentColor;
-        }
-        
-        /* CTA Section */
-        .cta-section {
-            padding: 100px 5%;
-            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
-            color: white;
-            text-align: center;
-        }
-        
-        .cta-section h2 {
-            font-size: 2.8rem;
-            margin-bottom: 1.5rem;
-            font-weight: 800;
-        }
-        
-        .cta-section p {
-            font-size: 1.3rem;
-            margin-bottom: 3rem;
-            opacity: 0.95;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        
-        /* Trust Section */
-        .trust {
-            padding: 80px 5%;
-            background: white;
-        }
-        
-        .trust-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 3rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        .trust-item {
-            text-align: center;
-            padding: 2rem;
-        }
-        
-        .trust-icon {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(135deg, var(--light-blue), var(--accent-green));
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2.5rem;
-            margin: 0 auto 1.5rem;
-            box-shadow: 0 5px 20px rgba(33, 220, 153, 0.3);
-        }
-        
-        .trust-item h4 {
-            font-size: 1.3rem;
-            margin-bottom: 0.8rem;
-            color: var(--dark-text);
-        }
-        
-        .trust-item p {
-            color: #666;
-            line-height: 1.8;
-        }
-        
-        /* WhatsApp Float Button */
-        .whatsapp-float {
-            position: fixed;
-            bottom: max(20px, env(safe-area-inset-bottom));
-            right: 30px;
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, var(--whatsapp-green), #20c05c);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
-            z-index: 9999;
-            text-decoration: none;
-            transition: all 0.3s;
-            border: 3px solid white;
-            touch-action: manipulation;
-        }
-        
-        .whatsapp-float:hover {
-            transform: scale(1.1);
-            box-shadow: 0 6px 25px rgba(37, 211, 102, 0.5);
-        }
-        
-        .whatsapp-float svg {
-            width: 32px;
-            height: 32px;
-            fill: white;
-        }
-        
-        /* Footer */
-        footer {
-            background: #1a1a1a;
-            color: white;
-            padding: 60px 5% 30px;
-        }
-        
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 3rem;
-            margin-bottom: 3rem;
-        }
-        
-        .footer-section h3 {
-            margin-bottom: 1rem;
-            color: var(--light-blue);
-        }
-        
-        .footer-section p, .footer-section a {
-            color: #aaa;
-            text-decoration: none;
-            line-height: 1.8;
-            transition: color 0.3s;
-        }
-        
-        .footer-section a:hover {
-            color: var(--light-blue);
-        }
-        
-        .footer-bottom {
-            text-align: center;
-            padding-top: 2rem;
-            border-top: 1px solid #333;
-            color: #666;
-        }
-        
-        .footer-bottom a {
-            color: var(--light-blue);
-            text-decoration: none;
-            transition: all 0.3s;
-        }
-        
-        .footer-bottom a:hover {
-            text-decoration: underline;
-        }
-        
-        /* Scroll margin */
-        section {
-            scroll-margin-top: 90px;
-        }
-        
-        /* Responsive */
-        @media (max-width: 768px) {
-            header {
-                padding: 0.5rem 0;
-            }
-            
-            nav {
-                flex-direction: row;
-                gap: 0.6rem;
-                padding: 0.6rem 3%;
-                justify-content: center;
-            }
-            
-            .logo {
-                gap: 0.6rem;
-            }
-            
-            .logo img {
-                height: 30px !important;
-                max-width: 105px;
-            }
-            
-            .logo a:last-child img {
-                height: 36px !important;
-                max-width: 120px;
-            }
-            
-            .cta-button-header {
-                display: none;
-            }
-            
-            .hero {
-                padding: 75px 5% 50px;
-            }
-            
-            .hero-content {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-            
-            .hero-text {
-                text-align: center;
-            }
-            
-            .hero-images {
-                height: 300px;
-            }
-            
-            .hero h1 {
-                font-size: 1.8rem;
-                line-height: 1.3;
-            }
-            
-            .hero p {
-                font-size: 1rem;
-                margin-bottom: 2rem;
-            }
-            
-            .hero-buttons {
-                flex-direction: column;
-                gap: 1rem;
-            }
-            
-            .whatsapp-btn {
-                width: 100%;
-                justify-content: center;
-                font-size: 1rem;
-                padding: 0.9rem 1.5rem;
-            }
-            
-            .whatsapp-btn svg {
-                width: 22px;
-                height: 22px;
-            }
-            
-            .section-header h2 {
-                font-size: 1.8rem;
-            }
-            
-            .section-header p {
-                font-size: 1rem;
-            }
-            
-            .benefits, .services, .trust, .cta-section {
-                padding: 50px 5%;
-            }
-            
-            .benefits-grid, .services-grid, .trust-grid {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
-            
-            .benefit-card, .service-card {
-                padding: 2rem 1.5rem;
-            }
-            
-            .benefit-icon, .service-icon, .trust-icon {
-                width: 60px;
-                height: 60px;
-                font-size: 1.8rem;
-            }
-            
-            .benefit-card h3, .service-card h3, .trust-item h4 {
-                font-size: 1.2rem;
-            }
-            
-            .service-whatsapp {
-                width: 100%;
-                justify-content: center;
-                padding: 0.7rem 1.4rem;
-            }
-            
-            .cta-section h2 {
-                font-size: 1.8rem;
-                margin-bottom: 1rem;
-            }
-            
-            .cta-section p {
-                font-size: 1.1rem;
-                margin-bottom: 2rem;
-            }
-            
-            .footer-content {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-                text-align: center;
-            }
-            
-            .footer-section {
-                padding: 0 1rem;
-            }
-            
-            .whatsapp-float {
-                width: 56px;
-                height: 56px;
-                bottom: 20px;
-                right: 20px;
-            }
-            
-            .whatsapp-float svg {
-                width: 28px;
-                height: 28px;
-            }
-        }
-        
-        /* Accessibility - focus visible */
-        a:focus-visible, button:focus-visible {
-            outline: 3px solid var(--accent-green);
-            outline-offset: 3px;
-        }
-    </style>
+    <link rel="stylesheet" href="assets/css/glide.core.min.css">
+    <link rel="stylesheet" href="assets/css/glide.theme.min.css">
 </head>
+
 <body>
-    <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KK27JQRT"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    
-    <!-- Header -->
-    <header role="banner">
-        <nav>
-            <div class="logo">
-                <a href="#" aria-label="Ir al inicio de la página">
-                    <img src="logo-corehlance-color-1.png" alt="Corehlance" loading="eager" decoding="async">
-                </a>
-                <a href="https://www.instagram.com/corehlance_wellness_center?igsh=MWlwdzd3bmVwYXgzbg==" target="_blank" rel="noopener noreferrer" aria-label="Visitar Instagram de Corehlance Wellness Center">
-                    <img src="logowc.png" alt="Wellness Center" loading="eager" decoding="async">
-                </a>
+    <div class="header">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-sm-6">
+                <img src="assets/img/corehlance-logo.webp" class="logo" alt="corehlance-logo">
+                <h1>
+                    Líderes en Salud <br>
+                    Ocupacional en México
+                </h1>
+                <h2>
+                    Protegemos el bienestar de tus 
+                    colaboradores a través de la 
+                    Salud Ocupacional. 
+                </h2>
+                <p>
+                    Somos especialistas en Salud Ocupacional y cuidamos el bienestar físico, mental y 
+                    social de tus colaboradores con servicios médicos y programas preventivos que 
+                    cumplen la normativa, sin afectar la continuidad operativa.
+                </p>
+                <a class="btn" href="#contacto">Solicita una cotización</a>
             </div>
-            <a href="https://wa.me/528128593079?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20Salud%20Ocupacional&utm_source=site&utm_medium=whatsapp&utm_campaign=so_core&utm_content=header" 
-               class="cta-button-header"
-               id="wa-header"
-               target="_blank"
-               rel="noopener noreferrer"
-               aria-label="Llamar al 81 2859 3079 por WhatsApp para solicitar información"
-               onclick="return gtag_report_conversion(this.href);">
-                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
-                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
-                </svg>
-                81 2859 3079
-            </a>
-        </nav>
-    </header>
+            <div class="col-12 col-sm-6 text-center">
+                <img class="baner" src="assets/img/corehlance-img-01.webp" alt="corehlance-img">
+            </div>
+         </div>
+    </div>
+</div>    <div class="sec1">
+    <div class="container">
+        <div class="titulo">
+            <h2>
+                Servicios Integrales
+            </h2>
+            <p>
+                Soluciones médicas hechas a la medida de tu empresa.
+            </p>
+        </div>
+        <div class="servicios">
+            <div class="row">
+                <div class="col-12 col-sm-4">
+                    <div class="servicio">
+                        <img src="assets/img/corehlance-icono-01.webp" alt="Estudios Clínicos Laborales">
+                        <h3>
+                            Estudios Clínicos Laborales
+                        </h3>
+                        <p>
+                            Exámenes médicos de ingreso, periódicos y de salida. Laboratorio clínico, audiometrías, 
+                            espirometrías, electrocardiogramas y rayos X en tus instalaciones.
+                        </p>
+                        <a data-bs-toggle="modal" data-bs-target="#servicio01" ><span>+</span> Más información</a>
+                    </div>
+                    <!-- The Modal -->
+                    <div class="modal" id="servicio01">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <!-- Modal body -->
+                                <div class="modal-body">
+                                    <button type="button" class="btn-x" data-bs-dismiss="modal">X</button>                                    
+                                    <h3>
+                                        Estudios Clínicos Laborales
+                                    </h3>
+                                    <p>
+                                        Realizamos exámenes médicos completos adaptados a las necesidades de tu empresa.
+                                    </p>
+                                    <br>
+                                    <p>
+                                        <strong>Laboratorio Clínico:</strong>
+                                    </p>
+                                    <ul>
+                                        <li>Antidoping</li>
+                                        <li>Biometría hemática</li>
+                                        <li>Química sanguínea</li>
+                                        <li>Hemoglobina glicosilada</li>
+                                        <li>Coproparasitoscópico</li>
+                                        <li>Examen general de orina</li>
+                                        <li>Perfil bioquímico</li>
+                                        <li>KOH</li>
+                                        <li>Otros análisis especializados</li>
+                                    </ul>
+                                    <p>
+                                        <strong>Estudios de gabinete:</strong>
+                                    </p>
+                                    <ul>
+                                        <li>Audiometrías</li>
+                                        <li>Espirometrías</li>
+                                        <li>Electrocardiogramas</li>
+                                        <li>Rayos X</li>
+                                    </ul>
+                                    <p>
+                                        <strong>Ventajas Clave:</strong>
+                                    </p>
+                                    <ul>
+                                        <li>Servicio en sitio (sin traslado)</li>
+                                        <li>Resultados el mismo día</li>
+                                        <li>Expediente clínico electrónico</li>
+                                        <li>Estadísticas grupales mensuales</li>
+                                        <li>Personal flebotomista capacitado</li>
+                                        <li>Personal de custodia en pruebas antidoping</li>
+                                    </ul>  
+                                    
+                                    <hr>
 
-    <main role="main" aria-label="Página de Salud Ocupacional de Corehlance">
-        <!-- Hero Section -->
-        <section class="hero">
-            <div class="hero-content">
-                <div class="hero-text">
-                    <h1>
-                        Salud Ocupacional Integral para <span>Empresas en México</span>
-                    </h1>
+                                    <a class="btn" href="#contacto" onclick="closeModal('servicio01')">Solicita una cotizacion</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-4">
+                    <div class="servicio">
+                        <img src="assets/img/corehlance-icono-02.webp" alt="Unidad Móvil Médica">
+                        <h3>
+                            Unidad Móvil Médica
+                        </h3>
+                        <p>
+                            Consultorio móvil equipado para realizar estudios directamente en tu empresa. Ideal para grupos grandes con tecnología de punta.
+                        </p>
+                        <a data-bs-toggle="modal" data-bs-target="#servicio02" ><span>+</span> Más información</a>
+                    </div>
+                    <!-- The Modal -->
+                    <div class="modal" id="servicio02">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <!-- Modal body -->
+                                <div class="modal-body">
+                                    <button type="button" class="btn-x" data-bs-dismiss="modal">X</button>                                    
+                                    <h3>
+                                        Unidad Móvil Médica
+                                    </h3>
+                                    <p>
+                                        Nuestro consultorio móvil permite realizar estudios directamente en tu empresa, ideal para grupos grandes (+50 personas).
+                                    </p>
+                                    <br>
+                                    <p>
+                                        <strong>Nuestra unidad móvil incluye:</strong>
+                                    </p>
+                                    <ul>
+                                        <li>Consultorio general climatizado</li>
+                                        <li>Equipo de Rayos X portátil</li>
+                                        <li>Cabina de audiometría certificada con aislamiento acústico</li>
+                                        <li>Espirómetro y audiómetro calibrados</li>
+                                        <li>Cama de exploración</li>
+                                        <li>Tecnología LED y conexión de 40 m de alcance</li>
+                                    </ul>
+                                    <p>
+                                        <strong>Servicios disponibles en la unidad:</strong>
+                                    </p>
+                                    <ul>
+                                        <li>Exámenes médicos completos</li>
+                                        <li>Toma de muestras de laboratorio</li>
+                                        <li>Audiometrías con cabina insonorizada</li>
+                                        <li>Espirometrías</li>
+                                        <li>Electrocardiogramas</li>
+                                        <li>Rayos X de tórax</li>
+                                    </ul>
+                                    <p>
+                                        La unidad móvil está equipada con la más alta tecnología para brindar servicios médicos de calidad sin necesidad de que tus colaboradores se trasladen.
+                                    </p>                                    
+                                    <hr>
+                                    <a class="btn" href="#contacto" onclick="closeModal('servicio02')">Solicita una cotizacion</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-4">
+                    <div class="servicio">
+                        <img src="assets/img/corehlance-icono-03.webp" alt="Médico In House">
+                        <h3>
+                            Médico In House
+                        </h3>
+                        <p>
+                            Asignamos personal médico y de enfermería capacitado en tus instalaciones para atención continua y gestión de riesgos laborales.
+                        </p>
+                        <a data-bs-toggle="modal" data-bs-target="#servicio03" ><span>+</span> Más información</a>
+                    </div>
+                    <!-- The Modal -->
+                    <div class="modal" id="servicio03">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <!-- Modal body -->
+                                <div class="modal-body">
+                                    <button type="button" class="btn-x" data-bs-dismiss="modal">X</button>                                    
+                                    <h3>
+                                        Atención Médica en Sitio (In House)
+                                    </h3>
+                                    <p>
+                                        Asignamos médicos y enfermeros capacitados a tus instalaciones, con experiencia en salud ocupacional y manejo de riesgos laborales.
+                                    </p>
+                                    <br>
+                                    <p>
+                                        <strong>Profesionales:</strong>
+                                    </p>
+                                    <ul>
+                                        <li>Con título, cédula y experiencia en entornos industriales</li>
+                                        <li>Capacitados en primeros auxilios y gestión médica</li>
+                                        <li>Coordinadores médicos y de enfermería supervisan el servicio</li>
+                                    </ul>
+                                    <p>
+                                        <strong>Actividades del personal médico::</strong>
+                                    </p>
+                                    <ul>
+                                        <li>Audiometrías</li>
+                                        <li>Espirometrías</li>
+                                        <li>Electrocardiogramas</li>
+                                        <li>Rayos X</li>
+                                    </ul>
+                                    <p>
+                                        <strong>Ventajas Clave:</strong>
+                                    </p>
+                                    <ul>
+                                        <li>Atención y registro de accidentes laborales (incluye llenado de ST-7, ST-9)</li>
+                                        <li>Auditorías a áreas operativas</li>
+                                        <li>Recorridos en planta y seguimiento de incapacidades</li>
+                                        <li>Elaboración de campañas básicas de salud</li>
+                                        <li>Indicadores e investigación de accidentes</li>
+                                    </ul>  
+                                    
+                                    <hr>
+
+                                    <a class="btn" href="#contacto" onclick="closeModal('servicio03')">Solicita una cotizacion</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-4">
+                    <div class="servicio">
+                        <img src="assets/img/corehlance-icono-04.webp" alt="Programa Wellness">
+                        <h3>
+                            Programa Wellness
+                        </h3>
+                        <p>
+                            Planes integrales de bienestar con nutriólogos, psicólogos, fisioterapeutas y coaches deportivos para mejorar la calidad de vida.
+                        </p>
+                        <a data-bs-toggle="modal" data-bs-target="#servicio04" ><span>+</span> Más información</a>
+                    </div>
+                    <!-- The Modal -->
+                    <div class="modal" id="servicio04">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <!-- Modal body -->
+                                <div class="modal-body">
+                                    <button type="button" class="btn-x" data-bs-dismiss="modal">X</button>                                    
+                                    <h3>
+                                        Bienestar Integral (Programa Wellness)
+                                    </h3>
+                                    <p>
+                                        Contamos con planes de salud física y emocional para tus colaboradores.
+                                    </p>
+                                    <br>
+                                    <p>
+                                        <strong>Especialistas disponibles:</strong>
+                                    </p>
+                                    <ul>
+                                        <li>Nutriólogo</li>
+                                        <li>Psicólogo</li>
+                                        <li>Coach deportivo</li>
+                                        <li>Fisioterapia</li>
+                                        <li>Tanatología</li>
+                                        <li>Médico general</li>
+                                    </ul>
+                                    <p>
+                                        <strong>Áreas cubiertas en fisioterapia:</strong>
+                                    </p>
+                                    <ul>
+                                        <li>Traumatológica</li>
+                                        <li>Respiratoria</li>
+                                        <li>Oncológica</li>
+                                        <li>Salud mental</li>
+                                    </ul>
+                                    <p>
+                                        <strong>Terapias complementarias:</strong>
+                                    </p>
+                                    <ul>
+                                        <li>Electroestimulación</li>
+                                        <li>Ultrasonido terapéutico</li>
+                                        <li>Kinesiotape</li>
+                                        <li>Masajes (relajantes, descontracturantes, descarga muscular)</li>
+                                        <li>Programas Especiales:</li>
+                                        <li>Ferias de Salud (glucosa, signos vitales, juegos didácticos)</li>
+                                        <li>Evaluaciones ergonómicas por puesto (certificadas por la Univ. Politécnica de Valencia)</li>
+                                        <li>Pláticas y talleres: manejo de estrés, ergonomía, prevención auditiva, salud emocional</li>
+                                    </ul>
+                                    <p>
+                                        <strong>Modalidad flexible:</strong>
+                                        atención en empresa, domicilio o en nuestras instalaciones.
+                                    </p>
+                                    
+                                    <hr>
+
+                                    <a class="btn" href="#contacto" onclick="closeModal('servicio04')">Solicita una cotizacion</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-4">
+                    <div class="servicio">
+                        <img src="assets/img/corehlance-icono-05.webp" alt="Cumplimiento Normativo">
+                        <h3>
+                            Cumplimiento Normativo
+                        </h3>
+                        <p>
+                            Te ayudamos a cumplir con las NOM-035, NOM-036 y NOM-037. Evaluaciones, reportes y planes de acción personalizados.
+                        </p>
+                        <a data-bs-toggle="modal" data-bs-target="#servicio05" ><span>+</span> Más información</a>
+                    </div>
+                    <!-- The Modal -->
+                    <div class="modal" id="servicio05">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <!-- Modal body -->
+                                <div class="modal-body">
+                                    <button type="button" class="btn-x" data-bs-dismiss="modal">X</button>                                    
+                                    <h3>
+                                        Cumplimiento Normativo y Prevención
+                                    </h3>
+                                    <p>
+                                        Te ayudamos a cumplir con todas las Normas Oficiales Mexicanas en materia de salud ocupacional y AHS.
+                                    </p>
+                                    <br>
+                                    <p>
+                                        <strong>Normas de Salud Ocupacional:</strong>
+                                    </p>
+                                    <p>
+                                        <strong>NOM-030-STPS - Servicios Preventivos de Seguridad y Salud</strong>
+                                    </p>
+                                    <ul>
+                                        <li>Implementación de programas de seguridad y salud</li>
+                                        <li>Diagnóstico de seguridad y salud en el trabajo</li>
+                                        <li>Programas preventivos y correctivos</li>
+                                    </ul>
+                                    <p>
+                                        <strong>NOM-035-STPS - Factores de Riesgo Psicosocial</strong>
+                                    </p>
+                                    <ul>
+                                        <li>Aplicación de cuestionarios</li>
+                                        <li>Reporte ejecutivo</li>
+                                        <li>Pláticas y recomendaciones</li>
+                                        <li>Consultas psicológicas y tanatológicas</li>
+                                        <li>Plan de acción personalizado</li>
+                                    </ul>
+                                    <p>
+                                        <strong>NOM-036-1-STPS - Ergonomía</strong>
+                                    </p>
+                                    <ul>
+                                        <li>Evaluaciones por puesto de trabajo</li>
+                                        <li>Métodos: MAC TOOL, RULA, NIOSH, OWAS, SNOOK & CIRELLO, ROSA JSI</li>
+                                        <li>Análisis de cargas y posturas</li>
+                                        <li>Recomendaciones ergonómicas</li>
+                                    </ul>  
+                                    <p>
+                                        <strong>NOM-037-STPS - Teletrabajo</strong>
+                                    </p>
+                                    <ul>
+                                        <li>Evaluación y recomendaciones para entornos remotos</li>
+                                        <li>Condiciones de seguridad y salud en home office</li>
+                                        <li>Capacitación en ergonomía para teletrabajo</li>
+                                    </ul>  
+                                    <p>
+                                        <strong>Normas de Ambiente, Higiene y Seguridad (AHS):</strong>
+                                    </p>
+                                    <p>
+                                        <strong>NOM-011-STPS - Ruido</strong>
+                                    </p>
+                                    <ul>
+                                        <li>Evaluación de niveles de ruido</li>
+                                        <li>Programas de conservación auditiva</li>
+                                        <li>Audiometrías ocupacionales</li>
+                                    </ul>
+
+                                    <p>
+                                        <strong>NOM-024-STPS - Vibraciones</strong>
+                                    </p>
+                                    <ul>
+                                        <li>Evaluación de exposición a vibraciones</li>
+                                        <li>Programas preventivos</li>
+                                    </ul>
+                                    <p>
+                                        <strong>NOM-025-STPS - Iluminación</strong>
+                                    </p>
+                                    <ul>
+                                        <li>Estudios de niveles de iluminación</li>
+                                        <li>Recomendaciones de mejora</li>
+                                    </ul>
+                                    <p>
+                                        <strong>NOM-018-STPS - Sustancias Químicas</strong>
+                                    </p>
+                                    <ul>
+                                        <li>Identificación y comunicación de peligros</li>
+                                        <li>Hojas de datos de seguridad</li>
+                                    </ul>
+                                    <hr>
+
+                                    <a class="btn" href="#contacto" onclick="closeModal('servicio05')">Solicita una cotizacion</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-4">
+                    <div class="servicio">
+                        <img src="assets/img/corehlance-icono-06.webp" alt="Zona Protegida 24/7">
+                        <h3>
+                            Zona Protegida 24/7
+                        </h3>
+                        <p>
+                            Servicio de urgencias traumatológicas disponible las 24 horas. Atención inmediata en clínica, empresa o domicilio.
+                        </p>
+                        <a data-bs-toggle="modal" data-bs-target="#servicio06" ><span>+</span> Más información</a>
+                    </div>
+                    <!-- The Modal -->
+                    <div class="modal" id="servicio06">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <!-- Modal body -->
+                                <div class="modal-body">
+                                    <button type="button" class="btn-x" data-bs-dismiss="modal">X</button>                                    
+                                    <h3>
+                                        Zona Protegida 24/7
+                                    </h3>
+                                    <p>
+                                        Servicio especializado en atención de emergencias médicas y traumatología.
+                                    </p>
+                                    <br>
+                                    <p>
+                                        <strong>Incluye:</strong>
+                                    </p>
+                                    <ul>
+                                        <li>Disponibilidad 24/7</li>
+                                        <li>Valoración en clínica, empresa o domicilio</li>
+                                        <li>Seguimiento en caso de requerir cirugía o tratamiento especializado</li>
+                                    </ul>
+                                    <p>
+                                        <strong>Traumatología en tu empresa:</strong> <br>
+                                        Atendemos urgencias traumatológicas 24/7 sin necesidad de traslado. Evaluamos y desarrollamos el tratamiento adecuado directamente en tu empresa o domicilio del colaborador.
+                                    </p>
+                                    <p>
+                                        <strong>Beneficios:</strong>
+                                    </p>
+                                    <ul>
+                                        <li>Atención inmediata</li>
+                                        <li>Menor tiempo de incapacidad</li>
+                                        <li>Evita traslados innecesarios</li>
+                                        <li>Mejora la recuperación del colaborador</li>
+                                    </ul>  
+                                    
+                                    <hr>
+
+                                    <a class="btn" href="#contacto" onclick="closeModal('servicio06')">Solicita una cotizacion</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="reward">
+            <div class="row">
+                <div class="col-12 col-sm-4 r-line">
+                    <img src="assets/img/corehlance-icono-11.webp" alt="Estudios Clínicos Laborales">
+                    <h2>
+                        Corehlance Rewards
+                    </h2>
+                    <h3>
+                        Acumula puntos por cada $10 pesos de compra.
+                    </h3>
                     <p>
-                        Cumple con STPS y protege a tus colaboradores con médicos en planta, estudios clínicos, evaluaciones psicosociales y programas de bienestar. Resultados el mismo día..
+                        Te otorgamos puntos por cada servicio contratado para que los canjees por descuentos en servicios adicionales.
                     </p>
-                    <div class="hero-buttons">
-                        <a href="https://wa.me/528128593079?text=Hola%2C%20quiero%20una%20cotizaci%C3%B3n%20de%20Salud%20Ocupacional&utm_source=site&utm_medium=whatsapp&utm_campaign=so_core&utm_content=hero-primary" 
-                           class="whatsapp-btn"
-                           id="wa-hero-primary"
-                           target="_blank"
-                           rel="noopener noreferrer"
-                           aria-label="Solicitar cotización gratuita de salud ocupacional por WhatsApp"
-                           onclick="return gtag_report_conversion(this.href);">
-                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
-                            </svg>
-                            Solicita tu Cotización
-                        </a>
-                        <a href="#servicios" 
-                           id="cta-ver-servicios"
-                           class="whatsapp-btn whatsapp-btn-secondary"
-                           style="background: white; color: var(--primary-blue); border: 2px solid var(--primary-blue);">
-                            Ver Servicios
-                        </a>
-                    </div>
                 </div>
-                <div class="hero-images">
-                    <div class="hero-image active">
-                        <img src="wellnesscenter.jpg" alt="Centro de bienestar Corehlance" loading="eager">
-                    </div>
-                    <div class="hero-image">
-                        <img src="patrocinio.png" alt="Patrocinio eventos de salud" loading="lazy">
-                    </div>
-                    <div class="hero-image">
-                        <img src="Equipo1.jpg" alt="Equipo médico Corehlance" loading="lazy">
-                    </div>
-                    <div class="hero-image">
-                        <img src="cancerdemama.jpeg" alt="Campaña prevención cáncer de mama" loading="lazy">
-                    </div>
-                    <div class="hero-image">
-                        <img src="cancerdemama2.jpeg" alt="Prevención cáncer de mama Corehlance" loading="lazy">
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Benefits Section -->
-        <section class="benefits">
-            <div class="section-header">
-                <h2>¿Por qué elegir Corehlance?</h2>
-                <p>Ventajas que nos hacen líderes en salud ocupacional</p>
-            </div>
-            <div class="benefits-grid">
-                <div class="benefit-card">
-                    <div class="benefit-icon">📋</div>
-                    <h3>Expediente Clínico Electrónico</h3>
-                    <p>Resultados el mismo día con trazabilidad total y acceso inmediato para auditorías STPS.</p>
-                </div>
-                <div class="benefit-card">
-                    <div class="benefit-icon">✅</div>
-                    <h3>Cumplimiento Normativo con Evidencia</h3>
-                    <p>NOM-035, NOM-036, NOM-030. Evita sanciones y mantén tu empresa al día.</p>
-                </div>
-                <div class="benefit-card">
-                    <div class="benefit-icon">🚑</div>
-                    <h3>Unidad Móvil y Médicos en Planta</h3>
-                    <p>Servicio en tu ubicación sin traslados. Ideal para empresas con +50 colaboradores.</p>
-                </div>
-                <div class="benefit-card">
-                    <div class="benefit-icon">📊</div>
-                    <h3>Reportes Automáticos</h3>
-                    <p>Trazabilidad digital completa y estadísticas mensuales para tu control.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Services Section -->
-        <section class="services" id="servicios">
-            <div class="section-header">
-                <h2>Servicios de Salud Ocupacional</h2>
-                <p>Soluciones completas adaptadas a las necesidades de tu empresa</p>
-            </div>
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-icon">🏥</div>
-                    <h3>Médico y Enfermería en Planta</h3>
-                    <p>Atención inmediata de accidentes laborales (ST-7, ST-9), bitácoras digitales, campañas preventivas y control de enfermedades crónicas.</p>
-                    <a href="https://wa.me/528128593079?text=Hola%2C%20quiero%20cotizar%20servicio%20de%20M%C3%A9dico%20en%20Planta&utm_source=site&utm_medium=whatsapp&utm_campaign=so_core&utm_content=servicio-medico" 
-                       class="service-whatsapp"
-                       id="wa-servicio-1"
-                       target="_blank"
-                       rel="noopener noreferrer"
-                       aria-label="Cotizar servicio de médico y enfermería en planta por WhatsApp"
-                       onclick="return gtag_report_conversion(this.href);">
-                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
-                        </svg>
-                        Cotizar Ahora
-                    </a>
-                </div>
-
-                <div class="service-card">
-                    <div class="service-icon">🔬</div>
-                    <h3>Estudios Clínicos Laborales</h3>
-                    <p>Antidoping, biometría, química sanguínea, audiometría, espirometría, rayos X, EKG. Resultados el mismo día con expediente electrónico.</p>
-                    <a href="https://wa.me/528128593079?text=Hola%2C%20quiero%20cotizar%20Estudios%20Cl%C3%ADnicos%20Laborales&utm_source=site&utm_medium=whatsapp&utm_campaign=so_core&utm_content=servicio-estudios" 
-                       class="service-whatsapp"
-                       id="wa-servicio-2"
-                       target="_blank"
-                       rel="noopener noreferrer"
-                       aria-label="Cotizar estudios clínicos laborales por WhatsApp"
-                       onclick="return gtag_report_conversion(this.href);">
-                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
-                        </svg>
-                        Cotizar Ahora
-                    </a>
-                </div>
-
-                <div class="service-card">
-                    <div class="service-icon">🚐</div>
-                    <h3>Unidad Móvil Equipada</h3>
-                    <p>Consultorio móvil con rayos X, cabina audiométrica y espirometría. Ideal para múltiples patios o +50 empleados.</p>
-                    <a href="https://wa.me/528128593079?text=Hola%2C%20quiero%20cotizar%20Unidad%20M%C3%B3vil&utm_source=site&utm_medium=whatsapp&utm_campaign=so_core&utm_content=servicio-movil" 
-                       class="service-whatsapp"
-                       id="wa-servicio-3"
-                       target="_blank"
-                       rel="noopener noreferrer"
-                       aria-label="Cotizar unidad móvil médica por WhatsApp"
-                       onclick="return gtag_report_conversion(this.href);">
-                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
-                        </svg>
-                        Cotizar Ahora
-                    </a>
-                </div>
-
-                <div class="service-card">
-                    <div class="service-icon">🧠</div>
-                    <h3>Evaluaciones Psicosociales (NOM-035)</h3>
-                    <p>Aplicación y análisis de cuestionarios, planes de acción, capacitación y documentación para auditoría STPS.</p>
-                    <a href="https://wa.me/528128593079?text=Hola%2C%20quiero%20cumplir%20con%20NOM-035&utm_source=site&utm_medium=whatsapp&utm_campaign=so_core&utm_content=servicio-nom035" 
-                       class="service-whatsapp"
-                       id="wa-servicio-4"
-                       target="_blank"
-                       rel="noopener noreferrer"
-                       aria-label="Cotizar cumplimiento NOM-035 por WhatsApp"
-                       onclick="return gtag_report_conversion(this.href);">
-                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
-                        </svg>
-                        Cotizar Ahora
-                    </a>
-                </div>
-
-                <div class="service-card">
-                    <div class="service-icon">📐</div>
-                    <h3>Ergonomía (NOM-036)</h3>
-                    <p>Evaluaciones REBA, RULA, NIOSH y MAC. Recomendaciones por puesto, evidencia documental y mejora de estaciones de trabajo.</p>
-                    <a href="https://wa.me/528128593079?text=Hola%2C%20quiero%20evaluaci%C3%B3n%20ergon%C3%B3mica%20NOM-036&utm_source=site&utm_medium=whatsapp&utm_campaign=so_core&utm_content=servicio-ergonomia" 
-                       class="service-whatsapp"
-                       id="wa-servicio-5"
-                       target="_blank"
-                       rel="noopener noreferrer"
-                       aria-label="Cotizar evaluación ergonómica NOM-036 por WhatsApp"
-                       onclick="return gtag_report_conversion(this.href);">
-                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
-                        </svg>
-                        Cotizar Ahora
-                    </a>
-                </div>
-
-                <div class="service-card">
-                    <div class="service-icon">💚</div>
-                    <h3>Programas de Bienestar & Wellness</h3>
-                    <p>Nutrición, psicología, fisioterapia, medicina general. Programas mensuales que mejoran productividad y reducen ausentismo.</p>
-                    <a href="https://wa.me/528128593079?text=Hola%2C%20quiero%20un%20programa%20de%20Bienestar&utm_source=site&utm_medium=whatsapp&utm_campaign=so_core&utm_content=servicio-wellness" 
-                       class="service-whatsapp"
-                       id="wa-servicio-6"
-                       target="_blank"
-                       rel="noopener noreferrer"
-                       aria-label="Cotizar programa de bienestar corporativo por WhatsApp"
-                       onclick="return gtag_report_conversion(this.href);">
-                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
-                        </svg>
-                        Cotizar Ahora
-                    </a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Trust Section -->
-        <section class="trust">
-            <div class="section-header">
-                <h2>Confianza y Experiencia Comprobada</h2>
-            </div>
-            <div class="trust-grid">
-                <div class="trust-item">
-                    <div class="trust-icon">🏭</div>
-                    <h4>Sectores Atendidos</h4>
-                    <p>Manufactura, Logística, Retail, Construcción, Servicios</p>
-                </div>
-                <div class="trust-item">
-                    <div class="trust-icon">📜</div>
-                    <h4>Certificaciones</h4>
-                    <p>Cumplimos con STPS, SSA, SEMARNAT</p>
-                </div>
-                <div class="trust-item">
-                    <div class="trust-icon">📈</div>
-                    <h4>Resultados Reales</h4>
-                    <p>Reducimos 25% incapacidades en 6 meses en manufactura (+500 empleados)</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- CTA Section -->
-        <section class="cta-section">
-            <h2>Cumple con la ley, cuida a tu equipo y evita sanciones</h2>
-            <p>Corehlance es tu aliado en Salud Ocupacional. Cotiza gratis y recibe respuesta inmediata por WhatsApp.</p>
-            <div class="hero-buttons">
-                <a href="https://wa.me/528128593079?text=Hola%2C%20quiero%20solicitar%20una%20cotizaci%C3%B3n%20personalizada&utm_source=site&utm_medium=whatsapp&utm_campaign=so_core&utm_content=cta-final" 
-                   class="whatsapp-btn"
-                   id="wa-cta-final"
-                   target="_blank"
-                   rel="noopener noreferrer"
-                   aria-label="Solicitar cotización personalizada gratuita por WhatsApp"
-                   onclick="return gtag_report_conversion(this.href);"
-                   style="background: white; color: var(--whatsapp-green); border: 2px solid white;">
-                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
-                    </svg>
-                    Solicitar Cotización
-                </a>
-            </div>
-        </section>
-
-        <!-- FAQ Section -->
-        <section class="services" aria-labelledby="faq-title" style="padding:60px 5%;background:#fff;">
-            <div class="container">
-                <h2 id="faq-title" class="section-title">Preguntas Frecuentes</h2>
-                
-                <details class="service-block" style="cursor:pointer;">
-                    <summary style="font-size:1.3rem;font-weight:600;color:var(--primary-blue);list-style:none;display:flex;align-items:center;gap:0.5rem;">
-                        ¿Realizan estudios clínicos en sitio con unidad móvil?
-                    </summary>
-                    <p style="margin-top:1rem;padding-left:2rem;">Sí, contamos con unidad móvil equipada (rayos X, audiometría, espirometría) para atender en planta o patios industriales.</p>
-                </details>
-                
-                <details class="service-block" style="cursor:pointer;">
-                    <summary style="font-size:1.3rem;font-weight:600;color:var(--primary-blue);list-style:none;display:flex;align-items:center;gap:0.5rem;">
-                        ¿Entregan resultados el mismo día?
-                    </summary>
-                    <p style="margin-top:1rem;padding-left:2rem;">Sí, integramos expediente clínico electrónico y entrega de resultados el mismo día según el estudio realizado.</p>
-                </details>
-                
-                <details class="service-block" style="cursor:pointer;">
-                    <summary style="font-size:1.3rem;font-weight:600;color:var(--primary-blue);list-style:none;display:flex;align-items:center;gap:0.5rem;">
-                        ¿Apoyan con cumplimiento NOM-035 y NOM-036?
-                    </summary>
-                    <p style="margin-top:1rem;padding-left:2rem;">Sí, realizamos diagnósticos, evaluaciones y documentación para auditorías de STPS con trazabilidad digital.</p>
-                </details>
-                
-                <details class="service-block" style="cursor:pointer;">
-                    <summary style="font-size:1.3rem;font-weight:600;color:var(--primary-blue);list-style:none;display:flex;align-items:center;gap:0.5rem;">
-                        ¿Qué otros servicios manejan?
-                    </summary>
-                    <p style="margin-top:1rem;padding-left:2rem;">Además de Salud Ocupacional, ofrecemos un <strong>Departamento Médico integral</strong>, que incluye:</p>
-                    <ul style="margin-top:0.5rem;padding-left:4rem;line-height:1.8;">
-                        <li>Medicamentos y material de curación.</li>
-                        <li>Lentes de seguridad graduados y sin graduar.</li>
-                        <li>Equipo de protección personal (EPP).</li>
-                        <li>Insumos médicos especializados.</li>
-                        <li>Capacitación para <strong>brigadas de emergencia, primeros auxilios, control de incendios y evacuación.</strong></li>
+                <div class="col-12 col-sm-8">
+                    <ul>
+                        <li>Suministro de medicamentos e insumos para el área de salud</li>
+                        <li>Brigadas, capacitaciones y simulacros</li>
+                        <li>Lentes de seguridad con graduación o lentes personales con graduación.</li>
+                        <li>Servicios relacionados con seguridad industrial como EPP, capacitaciones, cursos, pláticas, etc.</li>
+                        <li>Servicios relacionados con medio ambiente como recolección de  RME, permisos o capacitaciones.</li>
+                        <li>Programas Wellness en tu empresa como nutriólogo, psicólogo, fisio terapeuta y coach deportivo.</li>
+                        <li>Artículos personalizados</li>
+                        <li>Decoraciones</li>
                     </ul>
-                </details>
+                </div>
             </div>
-        </section>
-    </main>
+        </div>
+    </div>
+</div>
 
-    <!-- Footer -->
-    <footer>
-        <div class="footer-content">
-            <div class="footer-section">
-                <h3>Corehlance</h3>
-                <p>Líderes en salud ocupacional en México. Promovemos el bienestar integral de los trabajadores.</p>
+    <div class="sec2">
+    <div class="container">
+        <div class="titulo">
+            <h2>
+                Ventajas Competitivas
+            </h2>
+        </div>
+        <div class="servicios">
+            <div class="row">
+                <div class="col-6 col-sm-3">
+                    <div class="servicio">
+                        <img src="assets/img/corehlance-icono-07.webp" alt="Estudios Clínicos Laborales">
+                        <h3>
+                            Servicio en Sitio
+                        </h3>
+                        <p>
+                            Estudios realizados directamente en tus instalaciones.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-6 col-sm-3">
+                    <div class="servicio">
+                        <img src="assets/img/corehlance-icono-08.webp" alt="Unidad Móvil Médica">
+                        <h3>
+                            Resultados Inmediatos
+                        </h3>
+                        <p>
+                            Resultados de laboratorio el mismo día con expediente clínico electrónico.
+                        </p>
+                    </div>                    
+                </div>
+                <div class="col-6 col-sm-3">
+                    <div class="servicio">
+                        <img src="assets/img/corehlance-icono-09.webp" alt="Médico In House">
+                        <h3>
+                            Personal Certificado
+                        </h3>
+                        <p>
+                            Profesionales en salud ocupacional e industrial con amplia trayectoria.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-6 col-sm-3">
+                    <div class="servicio">
+                        <img src="assets/img/corehlance-icono-10.webp" alt="Programa Wellness">
+                        <h3>
+                            Convenios Hospitalarios
+                        </h3>
+                        <p>
+                            Red de hospitales aliados para atención especializada cuando se requiera.
+                        </p>
+                    </div>
+                </div>
             </div>
-            <div class="footer-section">
-                <h3>Contacto</h3>
+        </div>
+    </div>
+</div>    <div class="sec3">
+    <div class="container">
+        <h2>
+            Cuidamos lo más valioso de tu empresa: las personas.
+        </h2>
+        <p>
+            Agenda tu cita para conocer cómo podemos mejorar la salud y productividad de tu equipo.
+        </p>
+    </div>
+</div>    <div class="sec4">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-sm-6" id="contacto">
+                <h2 class="texto-azul">
+                    Contáctanos
+                </h2>
                 <p>
-                    💬 <a href="https://wa.me/528128593079?utm_source=site&utm_medium=whatsapp&utm_campaign=so_core&utm_content=footer" target="_blank" rel="noopener noreferrer">WhatsApp: 81 2859 3079</a><br><br>
-                    📍 Av. E sexta, HDA 1E 131<br>
-                    Col. Santa Isabel, 66612<br>
-                    Cdad. Apodaca, N.L.
+                    Envía tu mensaje y responderemos lo antes posible.
+                </p>
+                <form id="form-tag">
+                    <div class="mb-2">
+                        <input type="text" class="form-control" placeholder="Nombre:" name="nombre">
+                    </div>
+                    <div class="mb-2">
+                        <input type="email" class="form-control" placeholder="Correo:" name="correo">
+                    </div>
+                    <div class="mb-2">
+                        <input type="number" class="form-control" placeholder="Teléfono:" name="telefono">
+                    </div>
+                    <div class="mb-2">
+                        <input type="text" class="form-control" placeholder="Servicio que buscas:" name="servicio">
+                    </div>
+                    <div class="mb-3">
+                        <textarea class="form-control" placeholder="Mensaje:" name="mensaje"></textarea>
+                    </div>
+                    <button type="submit" class="btn">Enviar</button>
+                </form>
+            </div>
+            <div class="col-12 col-sm-6">
+                <h2>
+                    Visítanos
+                </h2>
+                <p>
+                    Acude a nuestra ubicación y con gusto te atenderemos.
+                </p>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3592.46731709558!2d-100.25155889271882!3d25.788152590662815!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2db12737dd08877b%3A0x41a7aa3016e1e289!2sCorehlance!5e0!3m2!1ses!2smx!4v1764864724572!5m2!1ses!2smx" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+    </div>
+</div>    <div class="sec5">
+  <div class="container d-pad">
+  </div>
+</div>    <div class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-sm-3">
+                <h3 class="texto-azul">
+                    Corehlance
+                </h3>
+                <p>
+                    Líderes en salud ocupacional en México. Promovemos el bienestar integral de los trabajadores con servicios confiables y personalizados.
                 </p>
             </div>
-            <div class="footer-section">
-                <h3>Horario</h3>
+            <div class="col-12 col-sm-3">
+                <h3>
+                    Servicios
+                </h3>
+                <ul>
+                    <li>Estudios Clínicos</li>
+                    <li>Unidad Móvil</li>
+                    <li>Médico In House</li>
+                    <li>Programa Wellness</li>
+                </ul>
+            </div>
+            <div class="col-12 col-sm-3">
+                <h3>
+                    Contacto
+                </h3>
+                <a href="mailto:ventas.noreste@corehlance.com">ventas.noreste@corehlance.com</a> <br>
+                <a href="tel:8128593079">81 2859 3079</a>
                 <p>
-                    Lunes a Sábado<br>
-                    09:00 - 18:00 hrs<br><br>
-                    <strong>Atención por WhatsApp 24/7</strong>
+                    Av. E sexta, HDA 1E 131, Col. Santa Isabel, 66612, Cdad. Apodaca, N.L.
+                </p>
+                <p>
+                    Lun-Sáb | 09:00-18:00 hrs
+                </p>
+            </div>
+            <div class="col-12 col-sm-3">
+                <h3>
+                    Certificaciones
+                </h3>
+                <p>
+                    Personal certificado CAOHC y NIOSH. Cumplimiento total con las Normas Oficiales Mexicanas en materia de salud ocupacional.
                 </p>
             </div>
         </div>
-        <div class="footer-bottom">
-            <p>&copy; 2025 Corehlance. Todos los derechos reservados. | <a href="/aviso-de-privacidad">Aviso de Privacidad</a></p>
-        </div>
-    </footer>
-
-    <!-- WhatsApp Float Button -->
-    <a href="https://wa.me/528128593079?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20Salud%20Ocupacional&utm_source=site&utm_medium=whatsapp&utm_campaign=so_core&utm_content=float"
-       class="whatsapp-float" 
-       id="wa-float" 
-       target="_blank"
-       rel="noopener noreferrer"
-       aria-label="Botón flotante de WhatsApp para contacto directo"
-       onclick="return gtag_report_conversion(this.href);">
-        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
-        </svg>
-    </a>
-
-    <script>
-        // Initialize dataLayer
-        window.dataLayer = window.dataLayer || [];
-        const whatsappTracking = {
-            'wa-header': { service: 'general' },
-            'wa-hero-primary': { service: 'cotizacion_general' },
-            'wa-servicio-1': { service: 'medico_planta' },
-            'wa-servicio-2': { service: 'estudios_clinicos' },
-            'wa-servicio-3': { service: 'unidad_movil' },
-            'wa-servicio-4': { service: 'nom_035' },
-            'wa-servicio-5': { service: 'ergonomia_nom_036' },
-            'wa-servicio-6': { service: 'wellness_bienestar' },
-            'wa-cta-final': { service: 'cotizacion_final' },
-            'wa-float': { service: 'float_general' }
-        };
-
-        Object.keys(whatsappTracking).forEach(id => {
-            const el = document.getElementById(id);
-            if (el) {
-                el.addEventListener('click', () => {
-                    const trackData = whatsappTracking[id];
-                    
-                    // GTM dataLayer con información enriquecida
-                    window.dataLayer.push({
-                        event: 'whatsapp_click',
-                        button_location: id,
-                        button_type: 'conversion',
-                        button_service: trackData.service
-                    });
-
-                    // Google Analytics event con callback
-                    if (typeof gtag === 'function') {
-                        gtag('event', 'click_whatsapp', {
-                            event_category: 'engagement',
-                            event_label: id,
-                            service_type: trackData.service,
-                            value: 1,
-                            event_callback: () => {
-                                console.log('GA4 event sent:', id);
-                            },
-                            event_timeout: 150
-                        });
-                    }
-
-                    console.log('WhatsApp click tracked:', {
-                        id: id,
-                        service: trackData.service
-                    });
-                });
-            }
-        });
-
-        // CTA interno: Ver Servicios
-        const ctaVerServicios = document.getElementById('cta-ver-servicios');
-        ctaVerServicios?.addEventListener('click', () => {
-          window.dataLayer.push({
-            event: 'cta_click',
-            button_location: 'hero',
-            button_type: 'nav_internal',
-            button_service: 'ver_servicios'
-          });
-          if (typeof gtag === 'function') {
-            gtag('event', 'click_cta', {
-              event_category: 'engagement',
-              event_label: 'hero_ver_servicios',
-              value: 1
-            });
-          }
-        });
-
-        // Marcar SVG decorativos como aria-hidden
-        document.querySelectorAll('a svg, .service-whatsapp svg, .whatsapp-float svg, .cta-button-header svg')
-          .forEach(svg => {
-            svg.setAttribute('aria-hidden','true');
-            svg.setAttribute('focusable','false');
-          });
-
-        // Hero image slideshow (5 segundos cada una)
-        const heroImages = document.querySelectorAll('.hero-image');
-        let currentImageIndex = 0;
-
-        function showNextImage() {
-            heroImages[currentImageIndex].classList.remove('active');
-            currentImageIndex = (currentImageIndex + 1) % heroImages.length;
-            heroImages[currentImageIndex].classList.add('active');
-        }
-
-        setInterval(showNextImage, 5000);
-
-        // Header shadow on scroll (eliminado Smooth scroll)
-        window.addEventListener('scroll', () => {
-            const header = document.querySelector('header');
-            if (window.scrollY > 10) {
-                header.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.15)';
-            } else {
-                header.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
-            }
-        });
-    </script>
+    </div>
+</div>    <div class="copyright">
+    <div class="container">
+        <p>
+            © 2025 Corehlance. Todos los derechos reservados. Diseño y desarrollo por <a target="_blank" href="https://futurite.com/">agencia de marketing digital</a> Futurité
+        </p>
+    </div>
+</div>
+    <script src="assets/js/jquery-3.6.1.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/contacto.js"></script>
+    <script src="assets/js/glide.min.js"></script>
 </body>
+
 </html>
